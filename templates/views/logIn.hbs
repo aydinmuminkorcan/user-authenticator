@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Log In</title>
+    <link rel="icon" href="/img/bulldog.jpg">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+        <img class="portrait" src="/img/bulldog.jpg">
+    </div>
+        <form action="/users/logIn" method="POST" name="logIn"> 
+            <input type="email" name="userName" placeholder="Username" value="{{formData.userName}}" required>
+            <input type="password" name="password" placeholder="Password" minlength="7" required>
+            <input type="submit">
+        </form> 
+        <p id="error">{{error.message}}</p>
+    {{>footer}}
+    <!-- <script src="/js/logIn.js"></script> -->
+</body>
+
+</html>
