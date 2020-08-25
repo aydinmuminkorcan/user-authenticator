@@ -2,17 +2,9 @@
 
 This project can be used as a subsystem or template for the projects which need user authentication and/or authorization.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+You need to install NodeJS latest version before you do anything. It can be installed in various ways, but we recommend to install via nvm (Node Version Manager) a bash script used to manage multiple released Node.js versions. Refer to [https://nodejs.org/en/download/package-manager/#nvm] 
 
 ### Installing
 
