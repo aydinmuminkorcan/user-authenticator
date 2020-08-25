@@ -4,16 +4,14 @@ This project can be used as a subsystem or template for the projects which need 
 
 ### Prerequisites
 
-You need to install NodeJS latest version before you do anything. It can be installed in various ways, but we recommend to install via nvm (Node Version Manager) a bash script used to manage multiple released Node.js versions. Refer to [https://nodejs.org/en/download/package-manager/#nvm] 
+You need to install the latest version  of NodeJS runtime before you do anything. It can be installed in various ways, but we recommend to install it via nvm (Node Version Manager) a bash script used to manage multiple released Node.js versions. Refer to [https://nodejs.org/en/download/package-manager/#nvm] for details.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+After you install nvm and use it to install one or more versions of nodejs, verify that you have installed them properly.
 
 ```
-Give the example
+nvm list
 ```
 
 And repeat
