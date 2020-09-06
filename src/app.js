@@ -4,7 +4,6 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
-
 const port = process.env.PORT || 3000;
 
 require('./db/mongoose');
@@ -29,7 +28,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(session({ secret: 'top-secret-word' }))
+app.use(session({
+    secret: 'top-secret-word',
+    cookie: {
+        maxAge: 60000
+    }
+}))
 
 app.get('/', (req, res) => {
     if(req.session.user){
