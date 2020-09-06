@@ -3,6 +3,8 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const bcrypt = require('bcryptjs');
+
 
 const port = process.env.PORT || 3000;
 
@@ -58,10 +60,14 @@ app.get('/users/logIn', (req, res) => {
 
 app.post('/users/logIn', (req, res) => {
     const body = req.body;
+
+    var user = null;
+
     User.findOne({
         userName: body.userName
-    }).then(user => {
-        if (!user) 
+    })
+    .then(foundUser => {
+        if (!foundUser)
             return res.status(400).render('logIn', {
                 formData: req.body,
                 error: {
@@ -70,17 +76,20 @@ app.post('/users/logIn', (req, res) => {
                 title: 'Log in Page',
                 name: 'Mumin Korcan Aydin'
             });
-        
-        if (user.password !== body.password) 
-           return res.status(400).render('logIn', {
-               formData: req.body,
-               error: {
-                   message: 'Invalid password'
-               },
-               title: 'Log in Page',
-               name: 'Mumin Korcan Aydin'
-           });
-    
+
+        user = foundUser;
+        return bcrypt.compare(body.password, user.password)
+    })
+    .then(match => {
+        if(!match)
+            return res.status(400).render('logIn', {
+                formData: req.body,
+                error: {
+                    message: 'Invalid password'
+                },
+                title: 'Log in Page',
+                name: 'Mumin Korcan Aydin'
+            });
         req.session.user = user;
         res.redirect('/users/me');
     }).catch(e => {
@@ -106,9 +115,11 @@ app.get('/users/signUp', (req, res) => {
 
 app.post('/users/signUp', (req, res) => {
     const body = req.body;
+    
     User.findOne({
         userName: body.userName
-    }).then((user) => {
+    })
+    .then((user) => {
         if (user) 
             return res.status(400).render('signUp',{
                 formData: req.body,
@@ -120,7 +131,7 @@ app.post('/users/signUp', (req, res) => {
         return new User(req.body).save()
             .then(user => {
                 req.session.user = user;
-                res.redirect('/users/me');
+                return res.redirect('/users/me');
             });
     })
     .catch(e => {

@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
-const User = mongoose.model('User', {
+
+const userSchema = mongoose.Schema({
     userName: {
         type: String,
         unique: true,
@@ -28,7 +30,21 @@ const User = mongoose.model('User', {
                 throw new Error('Age must be +18');
             }
         }
-    }
+    }});
+
+
+userSchema.pre('save', function(next){
+    const user = this;
+
+    return bcrypt.hash(user.password, 8)
+        .then(function(hash){
+            user.password = hash;
+            next();
+        })
 });
+
+
+
+const User = mongoose.model('User', userSchema);
 
 module.exports = User
