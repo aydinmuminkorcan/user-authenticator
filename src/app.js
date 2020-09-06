@@ -3,13 +3,11 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const bcrypt = require('bcryptjs');
-
 
 const port = process.env.PORT || 3000;
 
 require('./db/mongoose');
-const User = require('./models/user');
+const userRouter = require('./routers/userRouter');
 
 const app = express();
 
@@ -30,6 +28,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(session({
     secret: 'top-secret-word',
     cookie: {
@@ -48,117 +47,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/users/logIn', (req, res) => {
-    res.render('logIn', {
-        formData:{},
-        error:{},
-        title: 'Log In Page',
-        name: 'Mumin Korcan Aydin'
-    });
-});
-
-
-app.post('/users/logIn', (req, res) => {
-    const body = req.body;
-
-    var user = null;
-
-    User.findOne({
-        userName: body.userName
-    })
-    .then(foundUser => {
-        if (!foundUser)
-            return res.status(400).render('logIn', {
-                formData: req.body,
-                error: {
-                    message: 'User does not exist, please sign up!'
-                },
-                title: 'Log in Page',
-                name: 'Mumin Korcan Aydin'
-            });
-
-        user = foundUser;
-        return bcrypt.compare(body.password, user.password)
-    })
-    .then(match => {
-        if(!match)
-            return res.status(400).render('logIn', {
-                formData: req.body,
-                error: {
-                    message: 'Invalid password'
-                },
-                title: 'Log in Page',
-                name: 'Mumin Korcan Aydin'
-            });
-        req.session.user = user;
-        res.redirect('/users/me');
-    }).catch(e => {
-        console.error(e);
-        res.status(500).send(e);
-    });
-});
-
-app.get('/users/logOut', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
-});
-
-
-app.get('/users/signUp', (req, res) => {
-    res.render('signUp', {
-        formData: {},
-        error: {},
-        title: 'Sign up Page',
-        name: 'Mumin Korcan Aydin'
-    });
-});
-
-app.post('/users/signUp', (req, res) => {
-    const body = req.body;
-    
-    User.findOne({
-        userName: body.userName
-    })
-    .then((user) => {
-        if (user) 
-            return res.status(400).render('signUp',{
-                formData: req.body,
-                error: { message: 'User already exists, please log in!'},
-                title: 'Sign Up Page',
-                name: 'Mumin Korcan Aydin'
-            }); 
-        
-        return new User(req.body).save()
-            .then(user => {
-                req.session.user = user;
-                return res.redirect('/users/me');
-            });
-    })
-    .catch(e => {
-        console.error(e);
-        res.status(500).send(e);
-    });
-});
-    
-
-app.get('/users/me', (req, res) => {
-    if (!req.session.user) 
-        return res.redirect('/users/login');
-    
-    res.render('user', {
-        userName: req.session.user.userName,
-        name: 'Mumin Korcan Aydin'
-    });
-});
-
-app.get('/users', (req, res) => {
-    User.find({}).then((users) => {
-        res.send(users);
-    }).catch((e) => {
-        res.status(400).send(e);
-    });
-});
-
+app.use('/users', userRouter);
 
 app.get('*', (req, res) => {
     res.render('404', {
