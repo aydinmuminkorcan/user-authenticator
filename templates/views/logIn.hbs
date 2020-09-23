@@ -13,12 +13,17 @@
         {{>header}}
         <img class="portrait" src="/img/bulldog.jpg">
     </div>
-        <form action="/users/logIn" method="POST" name="logIn"> 
-            <input type="email" name="userName" placeholder="Username" value="{{formData.userName}}" required>
-            <input type="password" name="password" placeholder="Password" minlength="7" required>
-            <input type="submit">
-        </form> 
-        <p id="error">{{error.message}}</p>
+    <div>
+        <div><a href="{{url}}" >Login with Google</a></div>
+        <div>
+            <form action="/users/logIn" method="POST" name="logIn"> 
+                <input type="email" name="userName" placeholder="Username" value="{{formData.userName}}" required>
+                <input type="password" name="password" placeholder="Password" minlength="7" required>
+                <input type="submit">
+            </form> 
+            <p id="error">{{error.message}}</p>
+        </div>
+    </div>
     {{>footer}}
     <!-- <script src="/js/logIn.js"></script> -->
 </body>

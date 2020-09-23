@@ -3,11 +3,14 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-
+// const passport = require('passport');
+const flash = require('connect-flash');
 const port = process.env.PORT || 3000;
 
 require('./db/mongoose');
 const userRouter = require('./routers/userRouter');
+
+//require('./passport_setup')(passport);
 
 const app = express();
 
@@ -24,20 +27,24 @@ hbs.registerPartials(partialsPath);
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath));
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(flash());
 
 app.use(session({
     secret: 'top-secret-word',
     cookie: {
         maxAge: 60000
     }
-}))
+}));
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+app.use(express.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.get('/', (req, res) => {
-    if(req.session.user){
+    if(req.user){
         return res.redirect('/users/me');
     }
 

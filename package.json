@@ -2,7 +2,7 @@
   "name": "chat",
   "version": "1.0.0",
   "description": "Real-time chat app",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/app.js"
@@ -11,11 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "googleapis": "^59.0.0",
     "hbs": "^4.1.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.26",
+    "request": "^2.88.2",
     "validator": "^13.1.1"
   }
 }
