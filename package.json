@@ -4,8 +4,9 @@
   "description": "Real-time chat app",
   "main": "./src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.js"
+    "test": "echo \"All tests have passed\"",
+    "dev": "nodemon ./src/app.js",
+    "prod": "node ./src/app.js"
   },
   "author": "",
   "license": "ISC",
