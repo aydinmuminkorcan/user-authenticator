@@ -3,14 +3,11 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-// const passport = require('passport');
 const flash = require('connect-flash');
 const port = process.env.PORT || 3000;
 
 require('./db/mongoose');
 const userRouter = require('./routers/userRouter');
-
-//require('./passport_setup')(passport);
 
 const app = express();
 
@@ -35,8 +32,6 @@ app.use(session({
         maxAge: 60000
     }
 }));
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({
@@ -66,5 +61,5 @@ app.get('*', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log('Server is up on port 3000.')
+    console.log('Server is up on port '+ port);
 });

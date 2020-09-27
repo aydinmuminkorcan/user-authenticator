@@ -6,16 +6,10 @@ const request = require('request');
 const User = require('../models/user');
 const router = new express.Router();
 
-const googleConfig = {
-  clientId: '91143041520-c2g8a1uujkjpjpf3bb28pmdmv18md3qt.apps.googleusercontent.com',
-  clientSecret: 'lXmz0457TK-R7z-84pU01jbS',
-  redirect: 'http://localhost:3000/users/auth/google/callback'
-};
-
 const connection = new google.auth.OAuth2(
-  googleConfig.clientId,
-  googleConfig.clientSecret,
-  googleConfig.redirect
+  process.env.GOOGLE_LOCAL_CLIENT_ID,
+  process.env.GOOGLE_LOCAL_CLIENT_SECRET,
+  process.env.GOOGLE_LOCAL_REDIRECT_URI
 );
 
 const scope = [
@@ -51,7 +45,6 @@ router.get('/logIn', (req, res) => {
 
 
 router.post('/logIn', (req, res) => {
- //  Simple authentication without passportjs
   const body = req.body;
 
   var user = null;

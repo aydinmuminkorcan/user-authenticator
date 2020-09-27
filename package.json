@@ -21,5 +21,8 @@
     "mongoose": "^5.9.26",
     "request": "^2.88.2",
     "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }
