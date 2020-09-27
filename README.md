@@ -11,20 +11,45 @@ You need to install the latest version  of NodeJS runtime before you do anything
 After you install nvm and use it to install one or more versions of nodejs, verify that you have installed them properly.
 
 ```
-nvm list
+nvm --version
+```
+```
+npm --version
+```
+```
+node --version
+```
+If you see any version number after typing above commands, you have installed nodejs run time. Then clone the repository : 
+
+```
+git clone https://github.com/aydinmuminkorcan/user.git
+``` 
+or using ssh 
+
+```
+git clone git@github.com:aydinmuminkorcan/user.git
+``` 
+After cloning the repository, install dependencies by :
+
+```
+npm install
 ```
 
-And repeat
+Finally, for the development environment run:
 
 ```
-until finished
+npm run dev
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Here we go! Open a web browser and go to http://localhost:3000 and authenticate yourself.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Run the tests by:
+
+```
+npm run test
+```
 
 ### Break down into end to end tests
 
