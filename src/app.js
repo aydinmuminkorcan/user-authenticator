@@ -4,7 +4,7 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 require('./db/mongoose');
 const userRouter = require('./routers/userRouter');

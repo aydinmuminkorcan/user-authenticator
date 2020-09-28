@@ -5,7 +5,7 @@
   "main": "./src/app.js",
   "scripts": {
     "test": "echo \"All tests have passed\"",
-    "dev": "nodemon ./src/app.js",
+    "dev": "nodemon -r dotenv/config ./src/app.js",
     "prod": "node ./src/app.js"
   },
   "author": "",
