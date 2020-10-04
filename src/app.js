@@ -3,7 +3,6 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const flash = require('connect-flash');
 const port = process.env.PORT;
 
 require('./db/mongoose');
@@ -23,8 +22,6 @@ hbs.registerPartials(partialsPath);
 
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath));
-
-app.use(flash());
 
 app.use(session({
     secret: 'top-secret-word',
