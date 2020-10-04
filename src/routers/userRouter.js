@@ -1,19 +1,24 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const {google} = require('googleapis');
-const request = require('request');
-
+const axios = require('axios');
+const { google } = require('googleapis');
+const { OAuth2Client } = require('google-auth-library');
 const User = require('../models/user');
 const router = new express.Router();
 
+const googleClientId = process.env.GOOGLE_LOCAL_CLIENT_ID;
+
 const connection = new google.auth.OAuth2(
-  process.env.GOOGLE_LOCAL_CLIENT_ID,
+  googleClientId,
   process.env.GOOGLE_LOCAL_CLIENT_SECRET,
   process.env.GOOGLE_LOCAL_REDIRECT_URI
 );
 
+const authClient = new OAuth2Client(googleClientId);
+
 const scope = [
-  'https://mail.google.com'
+  'openid',
+  'email'
 ];
 
 const googleUrl = connection.generateAuthUrl({
@@ -22,8 +27,6 @@ const googleUrl = connection.generateAuthUrl({
   prompt: 'consent', // access type and approval prompt will force a new refresh token to be made each time signs in
   scope: scope.join(' ')
 });
-
-
 
 router.get('/', (req, res) => {
   User.find({}).then((users) => {
@@ -91,55 +94,54 @@ router.get('/auth/google/callback', (req, res) => {
   const code = req.query.code;
 
   if (code) {
-    connection.getToken(code, function (err, tokens) {
-      if (err) {
-        console.log(err);
-      } else {        
-        request({
-          url: 'https://gmail.googleapis.com/gmail/v1/users/me/profile',
-          headers: {
-            Authorization : 'Bearer '+tokens.access_token
-          }
-        }, 
-        
-        function(err, resp, respBody){
-          if(err)
-            return console.error(err);
-
-          const body = JSON.parse(respBody);
-
-          User.findOne({
-              userName: body.emailAddress
-            })
-            .then(foundUser => {
-              if (!foundUser){
-                const user = {
-                  userName: body.emailAddress,
-                  password: 'googlepass',
-                  age: 99
-                }
-                new User(user).save(function(err){
-                  if(err)
-                    return console.error(err);
-                  req.session.user = user;
-                  res.redirect('/users/me');
-                });
-              }
-              else{
-                req.session.user = foundUser;
-                res.redirect('/users/me');
-              }
-            })
-            .catch(e => {
-              console.error(e);
-              res.status(500).send(e);
-            });
-        });
+    axios({
+      method:'post',
+      url: 'https://oauth2.googleapis.com/token',
+      data: {
+        client_id: googleClientId,
+        client_secret: process.env.GOOGLE_LOCAL_CLIENT_SECRET,
+        redirect_uri: process.env.GOOGLE_LOCAL_REDIRECT_URI,
+        grant_type: 'authorization_code',
+        code:code,
       }
+    })
+    .then(function (resp) {
+      const tokens = resp.data;
+
+      return authClient.verifyIdToken({
+        idToken: tokens.id_token,
+        audience: googleClientId
+      })
+    })
+    .then(loginTicket => {
+      const payload = loginTicket.getPayload();
+      
+      return User.findOne({ userName: payload.email})
+    })
+    .then(foundUser => {
+      if (!foundUser) {
+        const user = {
+          userName: body.emailAddress,
+          password: 'googlepass',
+          age: 99
+        }
+        new User(user).save(function (err) {
+          if (err)
+            return console.error(err);
+          req.session.user = user;
+          res.redirect('/users/me');
+        });
+      } else {
+        req.session.user = foundUser;
+        res.redirect('/users/me');
+      }
+    })
+    .catch(e => {
+      console.error(e);
+      res.status(500).send(e);
     });
   }
 });
-
 
 router.get('/logOut', (req, res) => {
   req.session.destroy();

@@ -29,7 +29,7 @@ app.use(flash());
 app.use(session({
     secret: 'top-secret-word',
     cookie: {
-        maxAge: 60000
+        maxAge: 600000
     }
 }));
 
@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', (req, res) => {
-    if(req.user){
+    if(req.session.user){
         return res.redirect('/users/me');
     }
 

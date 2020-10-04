@@ -11,15 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
-    "connect-flash": "^0.1.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "google-auth-library": "^6.1.0",
     "googleapis": "^59.0.0",
     "hbs": "^4.1.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.26",
-    "request": "^2.88.2",
     "validator": "^13.1.1"
   },
   "devDependencies": {
