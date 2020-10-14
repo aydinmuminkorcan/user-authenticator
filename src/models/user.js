@@ -30,7 +30,12 @@ const userSchema = mongoose.Schema({
                 throw new Error('Age must be +18');
             }
         }
-    }});
+    },
+    thirdParty: {
+        type: Boolean,
+        default: false
+    }
+});
 
 
 userSchema.pre('save', function(next){

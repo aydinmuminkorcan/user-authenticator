@@ -6,12 +6,12 @@ const { OAuth2Client } = require('google-auth-library');
 const User = require('../models/user');
 const router = new express.Router();
 
-const googleClientId = process.env.GOOGLE_LOCAL_CLIENT_ID;
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
 
 const connection = new google.auth.OAuth2(
   googleClientId,
-  process.env.GOOGLE_LOCAL_CLIENT_SECRET,
-  process.env.GOOGLE_LOCAL_REDIRECT_URI
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI
 );
 
 const authClient = new OAuth2Client(googleClientId);
@@ -53,7 +53,7 @@ router.post('/logIn', (req, res) => {
   var user = null;
 
   User.findOne({
-      userName: body.userName
+      userName: body.userName, thirdParty:false
     })
     .then(foundUser => {
       if (!foundUser)
@@ -99,8 +99,8 @@ router.get('/auth/google/callback', (req, res) => {
       url: 'https://oauth2.googleapis.com/token',
       data: {
         client_id: googleClientId,
-        client_secret: process.env.GOOGLE_LOCAL_CLIENT_SECRET,
-        redirect_uri: process.env.GOOGLE_LOCAL_REDIRECT_URI,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        redirect_uri: process.env.GOOGLE_REDIRECT_URI,
         grant_type: 'authorization_code',
         code:code,
       }
@@ -116,25 +116,28 @@ router.get('/auth/google/callback', (req, res) => {
     .then(loginTicket => {
       const payload = loginTicket.getPayload();
       
-      return User.findOne({ userName: payload.email})
-    })
-    .then(foundUser => {
-      if (!foundUser) {
-        const user = {
-          userName: body.emailAddress,
-          password: 'googlepass',
-          age: 99
-        }
-        new User(user).save(function (err) {
-          if (err)
-            return console.error(err);
-          req.session.user = user;
-          res.redirect('/users/me');
-        });
-      } else {
-        req.session.user = foundUser;
-        res.redirect('/users/me');
-      }
+      User.findOne({ userName: payload.email})
+        .then(foundUser => {
+          if (!foundUser) {
+            const user = {
+              userName: payload.email,
+              password: 'thirdparty',
+              age: 99,
+              thirdParty: true,
+            }
+
+            new User(user).save(function (err) {
+              if (err)
+                return console.error(err);
+              req.session.user = user;
+              res.redirect('/users/me');
+            });
+          } 
+          else{
+            req.session.user = foundUser;
+            res.redirect('/users/me');
+          }
+        })
     })
     .catch(e => {
       console.error(e);
