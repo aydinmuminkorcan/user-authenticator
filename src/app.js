@@ -3,6 +3,8 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const helmet = require('helmet');
+
 const port = process.env.PORT;
 
 require('./db/mongoose');
@@ -30,13 +32,21 @@ app.use(session({
     }
 }));
 
-app.use(express.json());
+app.use(bodyParser.json({ limit: '50kb' }));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+if (process.env.NODE_ENV == 'production')
+    app.use(helmet());
+
 app.get('/', (req, res) => {
-    if(req.session.user){
+    if (req.session.user) {
         return res.redirect('/users/me');
     }
 
@@ -58,5 +68,5 @@ app.get('*', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log('Server is up on port '+ port);
+    console.log('Server is up on port ' + port);
 });
