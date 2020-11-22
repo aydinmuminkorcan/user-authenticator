@@ -1,12 +1,14 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const axios = require("axios");
+
 const expressBrute = require("express-brute");
 const store = new expressBrute.MemoryStore();
 const bruteForce = new expressBrute(store);
 
 const { google } = require("googleapis");
 const { OAuth2Client } = require("google-auth-library");
+
 const User = require("../models/user");
 const router = new express.Router();
 
@@ -24,6 +26,8 @@ const googleUrl = connection.generateAuthUrl({
 	prompt: "consent", // access type and approval prompt will force a new refresh token to be made each time signs in
 	scope: scope.join(" "),
 });
+
+// TODO: Restrict this endpoint for only admin users!!
 
 router.get("/", (req, res) => {
 	User.find({})
@@ -53,35 +57,36 @@ router.post("/logIn", bruteForce.prevent, (req, res) => {
 		userName: body.userName,
 		thirdParty: false,
 	})
-	.then(foundUser => {
-		if (!foundUser)
-			return res.status(401).render("logIn", {
-				url: googleUrl,
-				formData: req.body,
-				error: {
-					message: "User does not exist, please sign up!",
-				},
-				title: "Sign In",
-			});
+		.then(foundUser => {
+			if (!foundUser)
+				return res.status(401).render("logIn", {
+					url: googleUrl,
+					formData: req.body,
+					error: {
+						message: "User does not exist, please sign up!",
+					},
+					title: "Sign In",
+				});
 
-		user = foundUser;
-		if (!bcrypt.compareSync(body.password, user.password)) {
-			return res.status(401).render("logIn", {
-				url: googleUrl,
-				formData: req.body,
-				error: {
-					message: "Invalid password",
-				},
-				title: "Sign In",
-			});
-		}
-		req.session.user = user;
-		res.redirect("/users/me");
-	})
-	.catch(e => {
-		console.error(e);
-		res.status(500).send(e);
-	});
+			user = foundUser;
+			if (!bcrypt.compareSync(body.password, user.password)) {
+				return res.status(401).render("logIn", {
+					url: googleUrl,
+					formData: req.body,
+					error: {
+						message: "Invalid password",
+					},
+					title: "Sign In",
+				});
+			}
+
+			req.session.user = user; // Save user in the session object to use in the subsequent requests
+			res.redirect("/users/me");
+		})
+		.catch(e => {
+			console.error(e);
+			res.status(500).send(e);
+		});
 });
 
 router.get("/auth/google/callback", (req, res) => {
@@ -99,41 +104,41 @@ router.get("/auth/google/callback", (req, res) => {
 				code: code,
 			},
 		})
-		.then(function (resp) {
-			const tokens = resp.data;
+			.then(function (resp) {
+				const tokens = resp.data;
 
-			return authClient.verifyIdToken({
-				idToken: tokens.id_token,
-				audience: googleClientId,
-			});
-		})
-		.then(loginTicket => {
-			const payload = loginTicket.getPayload();
+				return authClient.verifyIdToken({
+					idToken: tokens.id_token,
+					audience: googleClientId,
+				});
+			})
+			.then(loginTicket => {
+				const payload = loginTicket.getPayload();
 
-			User.findOne({ userName: payload.email }).then(foundUser => {
-				if (!foundUser) {
-					const user = {
-						userName: payload.email,
-						password: "thirdparty",
-						age: 99,
-						thirdParty: true,
-					};
+				User.findOne({ userName: payload.email }).then(foundUser => {
+					if (!foundUser) {
+						const user = {
+							userName: payload.email,
+							password: "thirdparty",
+							age: 99,
+							thirdParty: true,
+						};
 
-					new User(user).save(function (err) {
-						if (err) return console.error(err);
-						req.session.user = user;
+						new User(user).save(function (err) {
+							if (err) return console.error(err);
+							req.session.user = user;
+							res.redirect("/users/me");
+						});
+					} else {
+						req.session.user = foundUser;
 						res.redirect("/users/me");
-					});
-				} else {
-					req.session.user = foundUser;
-					res.redirect("/users/me");
-				}
+					}
+				});
+			})
+			.catch(e => {
+				console.error(e);
+				res.status(500).send(e);
 			});
-		})
-		.catch(e => {
-			console.error(e);
-			res.status(500).send(e);
-		});
 	}
 });
 
@@ -156,25 +161,25 @@ router.post("/signUp", (req, res) => {
 	User.findOne({
 		userName: body.userName,
 	})
-	.then(user => {
-		if (user)
-			return res.status(400).render("signUp", {
-				formData: req.body,
-				error: {
-					message: "User already exists, please log in!",
-				},
-				title: "Sign Up"
-			});
+		.then(user => {
+			if (user)
+				return res.status(400).render("signUp", {
+					formData: req.body,
+					error: {
+						message: "User already exists, please log in!",
+					},
+					title: "Sign Up",
+				});
 
-		return new User(req.body).save().then(user => {
-			req.session.user = user;
-			return res.redirect("/users/me");
+			return new User(req.body).save().then(user => {
+				req.session.user = user;
+				return res.redirect("/users/me");
+			});
+		})
+		.catch(e => {
+			console.error(e);
+			res.status(500).send(e);
 		});
-	})
-	.catch(e => {
-		console.error(e);
-		res.status(500).send(e);
-	});
 });
 
 router.get("/me", (req, res) => {
