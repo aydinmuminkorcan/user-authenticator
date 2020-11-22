@@ -1,0 +1,201 @@
+/* :: Footer Area CSS */
+
+.footer-area {
+    position: relative;
+    background-color: #e4ccb5;
+}
+
+.footer-area .row {
+    margin-left: -30px;
+    margin-right: -30px;
+}
+
+@media only screen and (max-width: 767px) {
+    .footer-area .row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+
+.footer-area .row .col-12 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+    .footer-area .row .col-12 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.main-footer-area {
+    position: relative;
+    z-index: 1;
+}
+
+.main-footer-area .single-footer-widget .widget-title {
+    font-size: 20px;
+    color: #172d48;
+    margin-bottom: 20px;
+}
+
+.main-footer-area .single-footer-widget p {
+    color: #172d48;
+    font-size: 14px;
+}
+
+.main-footer-area .single-footer-widget p i {
+    margin-right: 5px;
+}
+
+.main-footer-area .single-footer-widget .footer-logo {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.main-footer-area .single-footer-widget .social-info a {
+    height: 34px;
+    width: 34px;
+    border: 1px solid #3d3e66;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 32px;
+    color: #ffffff;
+    font-size: 15px;
+    margin-right: 8px;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.main-footer-area .single-footer-widget .social-info a:hover,
+.main-footer-area .single-footer-widget .social-info a:focus {
+    background-color: #5d5e8d;
+    border-color: #5d5e8d;
+}
+
+.main-footer-area .single-footer-widget .footer-contact-info {
+    position: relative;
+    z-index: 1;
+}
+
+.main-footer-area .single-footer-widget .footer-contact-info p {
+    margin-bottom: 13px;
+}
+
+.main-footer-area .single-footer-widget .footer-contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.main-footer-area .single-footer-widget .footer-nav {
+    position: relative;
+    z-index: 1;
+}
+
+.main-footer-area .single-footer-widget .footer-nav li a {
+    color: #9293bc;
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: inline-block;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.main-footer-area .single-footer-widget .footer-nav li a:hover,
+.main-footer-area .single-footer-widget .footer-nav li a:focus {
+    color: #ffffff;
+}
+
+.main-footer-area .single-footer-widget .footer-nav li:last-child a {
+    margin-bottom: 0;
+}
+
+.main-footer-area .single-footer-widget .footer-gallery .row {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.main-footer-area .single-footer-widget .footer-gallery .row .col-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.main-footer-area .single-footer-widget .footer-gallery a {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.main-footer-area .single-footer-widget .footer-gallery a img {
+    border-radius: 5px;
+    width: 100%;
+}
+
+.main-footer-area .single-footer-widget .footer-gallery a::before {
+    background: #c63fa4;
+    background-image: -webkit-linear-gradient(120deg, #505add 0%, #df42b1 100%);
+    background-image: -ms-linear-gradient(120deg, #505add 0%, #df42b1 100%);
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition-duration: 300ms;
+    -o-transition-duration: 300ms;
+    transition-duration: 300ms;
+    border-radius: 5px;
+}
+
+.main-footer-area .single-footer-widget .footer-gallery a:hover::before {
+    visibility: visible;
+    opacity: 0.8;
+}
+
+.copywrite-content {
+    padding: 15px 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .copywrite-content {
+        text-align: center;
+    }
+}
+
+.copywrite-content .copywrite-text p {
+    color: #172d48;
+    font-size: 14px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .copywrite-content .copywrite-text p {
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .copywrite-content .copywrite-text p {
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
+.copywrite-content .copywrite-text p a {
+    color: #172d48;
+    font-weight: 400;
+}
+
+.copywrite-content .copywrite-text p a:hover,
+.copywrite-content .copywrite-text p a:focus {
+    color: #df42b1;
+}

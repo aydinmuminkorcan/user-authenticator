@@ -28,15 +28,13 @@ app.use(express.static(publicDirectoryPath));
 app.use(session({
     secret: 'top-secret-word',
     cookie: {
+        secure:true,
+        httpOnly:true,
         maxAge: 600000
     }
 }));
 
 app.use(bodyParser.json({ limit: '50kb' }));
-
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 
 app.use(bodyParser.urlencoded({
     extended: true

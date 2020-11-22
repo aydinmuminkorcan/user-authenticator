@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Mumin Korcan Aydin">
+	<meta name="description"
+		content="This simple web application implements some authentication mechanisms required for almost all online products">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{{title}}}</title>
+	<link rel="icon" href="/img/lock.png">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+	<link rel="stylesheet" href="/css/classy-nav.css">
+	<link rel="stylesheet" href="/css/defaults.css">
+	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body>
+	<header class="header-area">
+		<div class="classy-nav-container">
+			<div class="container">
+				<nav class="classy-navbar justify-content-between" id="conferNav">
+
+					<a class="nav-brand" href="/"><img src="/img/lock.png" style="max-width: 70%;"></a>
+
+					<div class="classy-navbar-toggler">
+						<span class="navbarToggler"><span></span><span></span><span></span></span>
+					</div>
+
+					<div class="classy-menu">
+						<div class="classycloseIcon">
+							<div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+						</div>
+
+						<div class="classynav">
+							<ul id="nav">
+								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#myItems">MY ITEMS</a>
+								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#footer">CONTACT US</a>
+							</ul>
+
+							<a href="/users/logOut" target="_blank" class="btn confer-btn mt-3 mt-lg-0 ml-3 ml-lg-5"><i
+									class="zmdi zmdi-long-arrow-left"></i>Sign Out</a>
+
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<section id="main" class="section-padding-50-50">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-heading-2 text-center">
+						<h4>
+							<font color="#001a35">{{userName}}'s LOCATION</font>
+						</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57483.69282137874!2d-80.30705139777385!3d25.779453811817017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b76cc3193a09%3A0x1b0539ab04197f75!2sMagic%20City%20Casino!5e0!3m2!1str!2str!4v1605991392101!5m2!1str!2str"
+					width="70%" height="400px" frameborder="0"></iframe>
+			</div>
+		</div>
+	</section>
+
+	{{>footer}}
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+	<script src="/js/confer.bundle.js"></script>
+	<script src="/js/active.js"></script>
+</body>
+
+</html>

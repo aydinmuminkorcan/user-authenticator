@@ -1,7 +1,33 @@
-<header>
-    <h1>{{title}}</h1>
+<header class="header-area">
+    <div class="classy-nav-container">
+        <div class="container">
 
-    <a href="/">Home</a>
-    <a href="/users/logIn">Log In</a>
-    <a href="/users/signUp">Sign Up</a>
+            <nav class="classy-navbar justify-content-between" id="conferNav">
+
+                <a class="nav-brand" href="/"><img src="/img/lock.png" style="max-width: 70%;"></a>
+
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+
+                <div class="classy-menu">
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+
+                    <div class="classynav">
+                        <ul id="nav">
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">HOME</a>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#footer">CONTACT US</a>
+                        </ul>
+
+                        <a href="/users/logIn" class="btn confer-btn mt-3 mt-lg-0 ml-3 ml-lg-5">Sign
+                            In<i class="zmdi zmdi-long-arrow-right"></i></a>
+                        <a href="/users/signUp" class="btn confer-btn mt-3 mt-lg-0 ml-3 ml-lg-5">Sign
+                            Up<i class="zmdi zmdi-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 </header>

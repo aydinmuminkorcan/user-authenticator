@@ -1,0 +1,244 @@
+/* :: 01.0 Reboot Area CSS */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	position: relative;
+	z-index: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Poppins", sans-serif;
+	color: #111343;
+	line-height: 1.25;
+	font-weight: 600;
+}
+
+li {
+	list-style: none;
+}
+
+p {
+	line-height: 1.8;
+	color: #5d5e8d;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	margin: 0;
+	padding: 0;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
+}
+
+textarea:invalid,
+input:invalid,
+textarea:required,
+input:required {
+	box-shadow: none !important;
+}
+
+.border {
+	border-color: #4b4d7b;
+}
+
+.section-padding-80 {
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+
+.section-padding-0-80 {
+	padding-top: 0;
+	padding-bottom: 80px;
+}
+
+.section-padding-80-0 {
+	padding-top: 80px;
+	padding-bottom: 0;
+}
+
+.section-padding-50-50 {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.section-padding-100 {
+	padding-top: 20px;
+	padding-bottom: 300px;
+}
+
+.section-padding-0-85 {
+	padding-top: 0;
+	padding-bottom: 85px;
+}
+
+.section-padding-100-60 {
+	padding-top: 100px;
+	padding-bottom: 60px;
+}
+
+.section-padding-100-70 {
+	padding-top: 100px;
+	padding-bottom: 70px;
+}
+
+.section-padding-0-100 {
+	padding-top: 0;
+	padding-bottom: 100px;
+}
+
+.section-padding-100-0 {
+	padding-top: 100px;
+	padding-bottom: 0;
+}
+
+/* :: 4.0 Heading Area CSS */
+
+.section-heading-2 {
+	position: relative;
+	z-index: 1;
+	margin-bottom: 60px;
+}
+
+.section-heading-2 p {
+	color: #ffffff;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	display: inline-block;
+	font-weight: 400;
+}
+
+.section-heading-2 h4 {
+	font-size: 38px;
+	color: #ffffff;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 767px) {
+	.section-heading-2 h4 {
+		font-size: 26px;
+	}
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+	.section-heading-2 h4 {
+		font-size: 30px;
+	}
+}
+
+/* Buttons CSS */
+
+.btn:hover {
+	color: white;
+}
+
+.btn:focus {
+	box-shadow: none;
+}
+
+.confer-btn {
+	position: relative;
+	z-index: 1;
+	height: 46px;
+	line-height: 46px;
+	font-size: 14px;
+	font-weight: 500;
+	border: none;
+	display: inline-block;
+	padding: 0 25px;
+	text-align: center;
+	letter-spacing: 0.5px;
+	color: #ffffff;
+	border-radius: 23px;
+	-webkit-transition-duration: 500ms;
+	-o-transition-duration: 500ms;
+	transition-duration: 500ms;
+	overflow: hidden;
+}
+
+.confer-btn i {
+	margin-left: 5px;
+}
+
+.confer-btn::before {
+	-webkit-transition-duration: 800ms;
+	-o-transition-duration: 800ms;
+	transition-duration: 800ms;
+	position: absolute;
+	width: 120%;
+	height: 120%;
+	top: -10%;
+	left: -10%;
+	content: "";
+	background: #40a777;
+	z-index: -2;
+}
+
+.confer-btn:focus,
+.confer-btn:hover {
+	font-weight: 500;
+	background-color: #ffffff;
+	color: #111343 !important;
+	-webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+	box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+}
+
+.confer-btn:focus i,
+.confer-btn:hover i {
+	-webkit-animation: buttonIcon 1s ease-in infinite;
+	animation: buttonIcon 1s ease-in infinite;
+}
+
+.confer-btn:focus::before,
+.confer-btn:hover::before {
+	left: 110%;
+}
+
+@-webkit-keyframes buttonIcon {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes buttonIcon {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+
+
