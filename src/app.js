@@ -36,7 +36,16 @@ const sess = {
 
 if (process.env.NODE_ENV == "production") {
 	// Add some extra security http headers and cookie options for the production environment
-	app.use(helmet());
+	app.use(
+		helmet.contentSecurityPolicy({
+			directives: {
+				...helmet.contentSecurityPolicy.getDefaultDirectives(),
+				"script-src": ["'self'", "https://code.jquery.com", "https://cdn.jsdelivr.net"],
+				"frame-ancestors": ["'self'", "https://www.google.com"],
+				"img-src" : ["'self'"]
+			},
+		})
+	);
 
 	app.set("trust proxy", 1);
 	sess.cookie.secure = true;
