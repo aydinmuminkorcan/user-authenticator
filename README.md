@@ -1,25 +1,38 @@
-# User
+# User Authentication
 
-This project can be used as a subsystem or template for the projects which need user authentication and/or authorization.
+This project illustrates all scenarios of Sign In / Sign Up process for a web application with fully responsive UI. It can be used as a subsystem or template for the projects which need user authentication and/or authorization.
 
 ### Prerequisites
 
-You need to install the latest version  of NodeJS runtime before you do anything. It can be installed in various ways, but we recommend to install it via nvm (Node Version Manager) a bash script used to manage multiple released Node.js versions. Refer to [https://nodejs.org/en/download/package-manager/#nvm] for details.
+* _NodeJS and related command line tools_: You need to install the latest version  of NodeJS runtime before you do anything. It can be installed in various ways, but we recommend to install it via nvm (Node Version Manager) a bash script used to manage multiple released Node.js versions. To install nvm, apply the instructions on https://github.com/nvm-sh/nvm#install--update-script. Then, type to check
+  
+    ```
+    nvm --version
+    ```
+    You may list the versions available for installation
+    ```
+    nvm ls-remote
+    ```
+    and install one or more of them by 
+
+    ```
+    nvm install <version-of-nodejs>
+    ```
+    Then check if it worked 
+
+    ```
+    node --version
+    npm  --version
+    ```
+    Finally, you can pick one of the installed versions by
+    ```
+    nvm use <version-of-nodejs>
+    ```
+* _Mongodb_: Install mongodb by the help of [this guide](https://docs.mongodb.com/manual/installation/) or simply 
+  download and add its bin directory to path variable
 
 ### Installing
-
-After you install nvm and use it to install one or more versions of nodejs, verify that you have installed them properly.
-
-```
-nvm --version
-```
-```
-npm --version
-```
-```
-node --version
-```
-If you see any version number after typing above commands, you have installed nodejs run time. Then clone the repository : 
+Clone the repository : 
 
 ```
 git clone https://github.com/aydinmuminkorcan/user.git
@@ -69,13 +82,15 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Add additional notes about how to deploy this on a live system.
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Express](https://expressjs.com/) - The web framework used
+* [npm](https://docs.npmjs.com/) - Dependency Management
+* [Mongodb](https://www.mongodb.com/) - Database to store user information
+* [Bootstrap](https://getbootstrap.com/) - UI framework 
+  
 
 ## Contributing
 
@@ -87,13 +102,13 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Mumin Korcan Aydin** - *Initial work* - [aydinmuinkorcan](https://github.com/aydinmuminkorcan)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
