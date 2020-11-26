@@ -26,13 +26,13 @@ hbs.registerPartials(partialsPath);
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath));
 
-const sess = session({
+const sess = {
 	secret: "top-secret-word",
 	cookie: {
 		httpOnly: true,
 		maxAge: 60000,
 	},
-});
+};
 
 if (process.env.NODE_ENV == "production") {
 	// Add some extra security http headers and cookie options for the production environment
@@ -42,7 +42,7 @@ if (process.env.NODE_ENV == "production") {
 	sess.cookie.secure = true;
 }
 
-app.use(sess);
+app.use(session(sess));
 
 app.use(bodyParser.json({ limit: "50kb" })); // limit the body size
 
