@@ -149,6 +149,7 @@ router.get("/logOut", (req, res) => {
 
 router.get("/signUp", (req, res) => {
 	res.render("signUp", {
+		url: googleUrl,
 		formData: {},
 		error: {},
 		title: "Sign up",
@@ -171,10 +172,21 @@ router.post("/signUp", (req, res) => {
 					title: "Sign Up",
 				});
 
-			return new User(req.body).save().then(user => {
-				req.session.user = user;
-				return res.redirect("/users/me");
-			});
+			return new User(req.body)
+				.save()
+				.then(user => {
+					req.session.user = user;
+					return res.redirect("/users/me");
+				})
+				.catch(e => {
+					res.status(400).render("signUp", {
+						formData: req.body,
+						error: {
+							message: e.message,
+						},
+						title: "Sign Up",
+					});
+				});
 		})
 		.catch(e => {
 			console.error(e);

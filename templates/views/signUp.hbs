@@ -18,13 +18,12 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-
     <link rel="stylesheet" href="/css/classy-nav.css">
+
     <link rel="stylesheet" href="/css/defaults.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/forms.css">
-
 </head>
 
 <body>
@@ -39,27 +38,27 @@
 
                         <form class="form-signin" action="/users/signUp" method="POST" name="signUp">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                                    value="{{formData.userName}}" required autofocus>
+                                <input type="email" id="inputEmail" class="form-control" name="userName"
+                                    placeholder="Email address" value="{{formData.userName}}" required autofocus>
                                 <label for="inputEmail">Email address</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                                    minlength="7" value="{{formData.password}}" required>
+                                <input type="password" id="inputPassword" class="form-control" name="password"
+                                    placeholder="Password" minlength="7" value="{{formData.password}}" required>
                                 <label for="inputPassword">Password</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input type="password" id="inputRePassword" class="form-control" minlength="7"
                                     placeholder="Retype Password" value="{{formData.rePassword}}" required>
-                                <label for="inputPassword">Retype Password</label>
+                                <label for="inputRePassword">Retype Password</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="number" id="inputAge" class="form-control" min="18" placeholder="Age"
-                                    value="{{formData.age}}" required>
-                                <label for="inputPassword">Age</label>
+                                <input type="number" id="inputAge" class="form-control" min="18" name="age"
+                                    placeholder="Age" value="{{formData.age}}" required>
+                                <label for="inputAge">Age</label>
                             </div>
 
                             <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign
