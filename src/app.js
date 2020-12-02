@@ -29,8 +29,8 @@ app.use(express.static(publicDirectoryPath));
 const sess = {
 	secret: "top-secret-word",
 	cookie: {
-		httpOnly: true,
-		maxAge: 60000,
+		httpOnly: true, // do not allow accessing cookies from JS
+		maxAge: 60000, // session duration
 	},
 };
 
@@ -41,8 +41,8 @@ if (process.env.NODE_ENV == "production") {
 			directives: {
 				...helmet.contentSecurityPolicy.getDefaultDirectives(),
 				"script-src": ["'self'", "https://code.jquery.com", "https://cdn.jsdelivr.net"],
-				"frame-ancestors": ["'self'", "https://www.google.com"],
-				"img-src" : ["'self'"]
+				"frame-src": ["'self'", "https://www.google.com"],
+				"img-src": ["'self'"],
 			},
 		})
 	);
