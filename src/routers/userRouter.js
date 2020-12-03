@@ -1,33 +1,16 @@
+"use strict";
+
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const axios = require("axios");
 
 const expressBrute = require("express-brute");
 const store = new expressBrute.MemoryStore();
 const bruteForce = new expressBrute(store);
 
-const { google } = require("googleapis");
-const { OAuth2Client } = require("google-auth-library");
-
 const User = require("../models/user");
 const router = new express.Router();
 
-const googleClientId = process.env.GOOGLE_CLIENT_ID;
-
-const connection = new google.auth.OAuth2(googleClientId, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_REDIRECT_URI);
-
-const authClient = new OAuth2Client(googleClientId);
-
-const scope = ["openid", "email"];
-
-const googleUrl = connection.generateAuthUrl({
-	response_type: "code",
-	access_type: "offline",
-	prompt: "consent", // access type and approval prompt will force a new refresh token to be made each time signs in
-	scope: scope.join(" "),
-});
-
-// TODO: Restrict this endpoint for only admin users!!
+const google = require("../helpers/googleAuth");
 
 router.get("/", (req, res) => {
 	User.find({})
@@ -41,7 +24,7 @@ router.get("/", (req, res) => {
 
 router.get("/logIn", (req, res) => {
 	res.render("logIn", {
-		url: googleUrl,
+		url: google.url,
 		formData: {},
 		error: {},
 		title: "Sign In",
@@ -60,7 +43,7 @@ router.post("/logIn", bruteForce.prevent, (req, res) => {
 		.then(foundUser => {
 			if (!foundUser)
 				return res.status(401).render("logIn", {
-					url: googleUrl,
+					url: google.url,
 					formData: req.body,
 					error: {
 						message: "User does not exist, please sign up!",
@@ -71,7 +54,7 @@ router.post("/logIn", bruteForce.prevent, (req, res) => {
 			user = foundUser;
 			if (!bcrypt.compareSync(body.password, user.password)) {
 				return res.status(401).render("logIn", {
-					url: googleUrl,
+					url: google.url,
 					formData: req.body,
 					error: {
 						message: "Invalid password",
@@ -93,24 +76,10 @@ router.get("/auth/google/callback", (req, res) => {
 	const code = req.query.code;
 
 	if (code) {
-		axios({
-			method: "post",
-			url: "https://oauth2.googleapis.com/token",
-			data: {
-				client_id: googleClientId,
-				client_secret: process.env.GOOGLE_CLIENT_SECRET,
-				redirect_uri: process.env.GOOGLE_REDIRECT_URI,
-				grant_type: "authorization_code",
-				code: code,
-			},
-		})
-			.then(function (resp) {
-				const tokens = resp.data;
-
-				return authClient.verifyIdToken({
-					idToken: tokens.id_token,
-					audience: googleClientId,
-				});
+		google
+			.getAuthorizationToken(code)
+			.then(function (tokens) {
+				return google.verifyIdentity(tokens.id_token);
 			})
 			.then(loginTicket => {
 				const payload = loginTicket.getPayload();
@@ -149,7 +118,7 @@ router.get("/logOut", (req, res) => {
 
 router.get("/signUp", (req, res) => {
 	res.render("signUp", {
-		url: googleUrl,
+		url: google.url,
 		formData: {},
 		error: {},
 		title: "Sign up",
