@@ -3,10 +3,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 
-const expressBrute = require("express-brute");
-const store = new expressBrute.MemoryStore();
-const bruteForce = new expressBrute(store);
-
 const User = require("../models/user");
 const router = new express.Router();
 
@@ -33,7 +29,7 @@ router.get("/logIn", (req, res) => {
 	});
 });
 
-router.post("/logIn", bruteForce.prevent, (req, res) => {
+router.post("/logIn", (req, res) => {
 	const body = req.body;
 
 	var user = null;
