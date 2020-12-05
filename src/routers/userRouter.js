@@ -12,6 +12,8 @@ const router = new express.Router();
 
 const google = require("../helpers/googleAuth");
 
+// TODO: Restrict this endpoint for only admin users!!
+
 router.get("/", (req, res) => {
 	User.find({})
 		.then(users => {
@@ -72,15 +74,14 @@ router.post("/logIn", bruteForce.prevent, (req, res) => {
 		});
 });
 
+// After the users enter their google credentials, they are redirected to this path by google
 router.get("/auth/google/callback", (req, res) => {
 	const code = req.query.code;
 
 	if (code) {
 		google
 			.getAuthorizationToken(code)
-			.then(function (tokens) {
-				return google.verifyIdentity(tokens.id_token);
-			})
+			.then(tokens => google.verifyIdentity(tokens.id_token))
 			.then(loginTicket => {
 				const payload = loginTicket.getPayload();
 
@@ -128,9 +129,7 @@ router.get("/signUp", (req, res) => {
 router.post("/signUp", (req, res) => {
 	const body = req.body;
 
-	User.findOne({
-		userName: body.userName,
-	})
+	User.findOne({ userName: body.userName })
 		.then(user => {
 			if (user)
 				return res.status(400).render("signUp", {
