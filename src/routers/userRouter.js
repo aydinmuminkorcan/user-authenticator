@@ -6,7 +6,13 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const router = new express.Router();
 
+const rateLimit = require("express-rate-limit");
 const google = require("../helpers/googleAuth");
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 20, // limit each IP to 20 requests per windowMs
+});
 
 // TODO: Restrict this endpoint for only admin users!!
 
@@ -29,15 +35,15 @@ router.get("/logIn", (req, res) => {
 	});
 });
 
-router.post("/logIn", (req, res) => {
+router.post("/logIn", limiter, (req, res) => {
 	const body = req.body;
 
 	var user = null;
 
 	User.findOne({
-		userName: body.userName,
-		thirdParty: false,
-	})
+			userName: body.userName,
+			thirdParty: false,
+		})
 		.then(foundUser => {
 			if (!foundUser)
 				return res.status(401).render("logIn", {
