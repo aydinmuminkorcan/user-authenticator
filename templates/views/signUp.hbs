@@ -45,14 +45,17 @@
 
                             <div class="form-label-group">
                                 <input type="password" id="inputPassword" class="form-control" name="password"
-                                    placeholder="Password" minlength="7" value="{{formData.password}}" required>
+                                    placeholder="Password" minlength="7" value="{{formData.password}}"
+                                    onchange="check_pass();" required>
                                 <label for="inputPassword">Password</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input type="password" id="inputRePassword" class="form-control" minlength="7"
-                                    placeholder="Retype Password" value="{{formData.rePassword}}" required>
+                                    placeholder="Retype Password" value="{{formData.rePassword}}"
+                                    onchange="check_pass();" required>
                                 <label for="inputRePassword">Retype Password</label>
+                                <span id='message'></span>
                             </div>
 
                             <div class="form-label-group">
@@ -61,7 +64,8 @@
                                 <label for="inputAge">Age</label>
                             </div>
 
-                            <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign
+                            <button id="submit" class="btn btn-lg btn-success btn-block text-uppercase"
+                                type="submit">Sign
                                 Up</button>
                             <hr class="my-4">
                             <a href="{{url}}" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
@@ -88,6 +92,7 @@
         crossorigin="anonymous"></script>
     <script src="/js/confer.bundle.js"></script>
     <script src="/js/active.js"></script>
+    <script src="/js/signUp.js"></script>
 </body>
 
 </html>
