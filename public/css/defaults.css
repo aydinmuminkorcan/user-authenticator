@@ -164,81 +164,281 @@ input:required {
 	box-shadow: none;
 }
 
-.confer-btn {
-	position: relative;
-	z-index: 1;
-	height: 46px;
-	line-height: 46px;
-	font-size: 14px;
-	font-weight: 500;
-	border: none;
-	display: inline-block;
-	padding: 0 25px;
-	text-align: center;
-	letter-spacing: 0.5px;
-	color: #ffffff;
-	border-radius: 23px;
-	-webkit-transition-duration: 500ms;
-	-o-transition-duration: 500ms;
-	transition-duration: 500ms;
+/* 
+	Home page 
+*/
+
+/*********************************************************************************/
+/* Wrapper                                                                       */
+/*********************************************************************************/
+
+#wrapper1 {
+	background: #fff;
+}
+
+#wrapper3 {
 	overflow: hidden;
+	padding: 0em 0em 8em 0em;
+	background: #fff;
+	margin: 0 auto;
 }
 
-.confer-btn i {
-	margin-left: 5px;
+#wrapper4 {
+	overflow: hidden;
+	padding: 8em 0em 4em 0em;
 }
 
-.confer-btn::before {
-	-webkit-transition-duration: 800ms;
-	-o-transition-duration: 800ms;
-	transition-duration: 800ms;
-	position: absolute;
-	width: 120%;
-	height: 120%;
-	top: -10%;
-	left: -10%;
-	content: "";
-	background: #40a777;
-	z-index: -2;
+/*********************************************************************************/
+/* Logo                                                                          */
+/*********************************************************************************/
+
+#logo {
+	padding: 5em 0em;
+	text-align: center;
 }
 
-.confer-btn:focus,
-.confer-btn:hover {
-	font-weight: 500;
-	background-color: #ffffff;
-	color: #111343 !important;
-	-webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
-	box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+#logo h1 {
+	font-size: 3.5em;
 }
 
-.confer-btn:focus i,
-.confer-btn:hover i {
-	-webkit-animation: buttonIcon 1s ease-in infinite;
-	animation: buttonIcon 1s ease-in infinite;
+#logo h1 a {
+	color: #6c2a6a;
 }
 
-.confer-btn:focus::before,
-.confer-btn:hover::before {
-	left: 110%;
+#logo a {
+	text-decoration: none;
 }
 
-@-webkit-keyframes buttonIcon {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
+#logo span {
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-size: 0.9em;
+	color: #3c3c3c;
 }
 
-@keyframes buttonIcon {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
+#logo span a {
+	color: #3c3c3c;
 }
 
+#logo .icon {
+	display: inline-block;
+	margin-bottom: 2em;
+	padding: 1em;
+	background: #6c2a6a;
+	border-radius: 50%;
+	font-size: 1.6em;
+	color: #fff;
+}
 
+/*********************************************************************************/
+/* Portfolio                                                                     */
+/*********************************************************************************/
 
+.portfolio {
+	padding-top: 8em;
+	margin: 0 auto;
+}
+
+.portfolio .box {
+	text-align: center;
+	color: rgba(0, 0, 0, 0.7);
+}
+
+.portfolio h3 {
+	display: block;
+	padding-bottom: 1em;
+	text-transform: uppercase;
+	font-size: 1em;
+	color: rgba(0, 0, 0, 0.9);
+}
+
+.portfolio .title {
+	margin-bottom: 5em;
+	text-align: center;
+}
+
+.portfolio .title h2 {
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.portfolio .title .byline {
+	letter-spacing: normal;
+	text-transform: capitalize;
+	font-size: 1.6em;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.portfolio .icon {
+	display: inline-block;
+	margin-bottom: 2em;
+	font-size: 1.6em;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.column1,
+.column2,
+.column3,
+.column4 {
+	width: 282px;
+}
+
+.column1,
+.column2,
+.column3 {
+	float: left;
+	margin-right: 24px;
+}
+
+.column4 {
+	float: right;
+}
+
+/*********************************************************************************/
+/* Three Columns                                                                 */
+/*********************************************************************************/
+
+#three-column {
+	overflow: hidden;
+	padding-bottom: 4em;
+	text-align: center;
+}
+
+#three-column h2 {
+	margin: 1em 0em;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+#three-column .icon {
+	position: relative;
+	display: block;
+	margin: 0px auto 0.8em auto;
+	line-height: 150px;
+	font-size: 4em;
+	width: 150px;
+	height: 150px;
+	border-radius: 100px;
+	text-align: center;
+	color: #632f00;
+}
+
+#three-column #tbox1,
+#three-column #tbox2,
+#three-column #tbox3 {
+	float: left;
+	width: 320px;
+	padding: 80px 40px 80px 40px;
+}
+
+#three-column .title {
+	letter-spacing: 0.1em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#three-column .title h2 {
+	font-size: 1.6em;
+	font-weight: 900;
+	font-family: "Open Sans", sans-serif;
+	color: #261300;
+}
+
+#three-column .title .byline {
+	padding-top: 0.5em;
+	font-size: 0.9em;
+	color: #858585;
+}
+
+#three-column .arrow-down {
+	border-top-color: #292929;
+}
+
+/*********************************************************************************/
+/* Social Icon Styles                                                            */
+/*********************************************************************************/
+
+ul.contact {
+	margin: 0;
+	padding: 1em 0em 0em 0em;
+	list-style: none;
+}
+
+ul.contact li {
+	display: inline-block;
+	padding: 0em 0.2em;
+	font-size: 1.2em;
+}
+
+ul.contact li span {
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.contact li a {
+	color: rgba(255, 255, 255, 1);
+}
+
+ul.contact li a:before {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	background: #6c2a6a;
+	border-radius: 30px;
+	text-align: center;
+}
+
+/*********************************************************************************/
+/* Button Style                                                                  */
+/*********************************************************************************/
+
+.button {
+	display: inline-block;
+	margin-top: 2em;
+	padding: 0.6em 1em;
+	background: #6c2a6a;
+	border-radius: 4px;
+	line-height: 1.8em;
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 1.2em;
+	color: #fff;
+}
+
+.button:before {
+	display: inline-block;
+	background: #8dcb89;
+	margin-right: 1em;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	text-align: center;
+	color: #272925;
+}
+
+.button-small {
+}
+
+/*********************************************************************************/
+/* Heading Titles                                                                */
+/*********************************************************************************/
+
+.title {
+	margin-bottom: 3em;
+}
+
+.title h2 {
+	font-size: 2.8em;
+	color: #261300;
+}
+
+.title .byline {
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 1.1em;
+	color: #6f6f6f;
+}
