@@ -4,7 +4,7 @@
 	"description": "Sample web application makes users register and authenticate",
 	"main": "./src/app.js",
 	"scripts": {
-		"test": "jest",
+		"test": "jest --passWithNoTests",
 		"dev": "nodemon --ext 'js,json,css,html,hbs' -r dotenv/config ./src/app.js",
 		"prod": "node ./src/app.js"
 	},
