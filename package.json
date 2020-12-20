@@ -1,5 +1,5 @@
 {
-    "name": "user-authentication",
+    "name": "user-authenticator",
     "version": "1.0.0",
     "description": "Sample web application makes users register and authenticate",
     "main": "./src/app.js",
