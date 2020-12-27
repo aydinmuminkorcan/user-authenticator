@@ -2,9 +2,8 @@
 <h1 align="center">User Authenticator</h1>
 <p align="center">Make yourself trusted!</p>
 
-<br>
 This simple project illustrates the scenarios of Sign In / Sign Up process for a web application with a fully responsive UI. It can be used as a subsystem or template for the projects which need user authentication.
-<br><br>
+<br>
 
 ## Prerequisites
 
@@ -33,12 +32,32 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
     nvm use <version-of-nodejs>
     ```
 * _Mongodb_: Install mongodb by the help of [this guide](https://docs.mongodb.com/manual/installation/) or simply 
-  download and add its bin directory to $PATH environment variable. Run the following to start mongodb server:
+  download and add its bin directory to your system's $PATH environment variable. Run the following to start mongodb server:
   ```
   mongod --dbpath <directory-path-to-store-actual-data>
   ```
-<br>
+* _Google Credentials_: Get your google __client ID__ and __client secret__ from [google console page](https://console.developers.google.com/) by the following steps, later you will use them while sign in with google
+  
+  1. From the project drop-down, select an existing project, or create a new one by selecting __Create a new project__
+  
+      ![alt text](./public/img/1.png)
 
+  2. In the sidebar under "APIs & Services", select __Credentials__
+      ![alt text](./public/img/2.png)
+
+  3. In the Credentials tab, select the Create credentials drop-down list, and choose __OAuth client ID__.
+     ![alt text](./public/img/3.png)
+
+  4. Under Application type, select __Web application__, give a name whatever you want, and add your domain to __Authorized Javascript Origin__. (For the development environment, localhost is ok). In __Authorized redirect URI__ use http://localhost:3000/users/auth/google/callback
+  . Then click __Create__ button. 
+     ![alt text](./public/img/4.png)
+
+  5. Copy or download the credentials JSON file by clicking on the download button.
+   
+      _Note_: When you run this app in the development environment, you will come across the following screen because of not using https, but this will not be the case in the production environment as Heroku itself publishes apps via https. Thus, for now, simply click on show advance and then click on Go to 'your app name'(unsafe) and allow it.
+
+      ![alt text](./public/img/5.png)
+   
 ## Installing
 Clone the repository : 
 
