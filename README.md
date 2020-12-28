@@ -43,13 +43,17 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
       ![alt text](./public/img/1.png)
 
   2. In the sidebar under "APIs & Services", select __Credentials__
+   
       ![alt text](./public/img/2.png)
 
+
   3. In the Credentials tab, select the Create credentials drop-down list, and choose __OAuth client ID__.
+   
      ![alt text](./public/img/3.png)
 
   4. Under Application type, select __Web application__, give a name whatever you want, and add your domain to __Authorized Javascript Origin__. (For the development environment, localhost is ok). In __Authorized redirect URI__ use http://localhost:3000/users/auth/google/callback
   . Then click __Create__ button. 
+
      ![alt text](./public/img/4.png)
 
   5. Copy or download the credentials JSON file by clicking on the download button.
@@ -106,7 +110,10 @@ npm run lint
 ```
 
 ## Deployment
-Add additional notes about how to deploy this on a live system.
+Deploy the app on heroku by using the following button:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/aydinmuminkorcan/user-authenticator)
+
 
 ## Built With
 * [Express](https://expressjs.com/) - The web framework used
