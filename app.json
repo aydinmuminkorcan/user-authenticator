@@ -3,7 +3,7 @@
     "description": "Sample web application makes users register and authenticate",
     "keywords": ["nodejs", "express", "authentication"],
     "repository": "https://github.com/aydinmuminkorcan/user-authenticator",
-    "logo": "./public/img/lock.png",
+    "logo": "https://github.com/aydinmuminkorcan/user-authenticator/blob/master/public/img/lock.png",
     "env": {
         "NODE_ENV": {
             "description": "Node environment",
@@ -27,7 +27,7 @@
         },
         "GOOGLE_REDIRECT_URI": {
             "description": "redirect uri",
-            "value": "<your GOOGLE_REDIRECT_URI>"
+            "value": "https://<app-name>.herokuapp.com/users/auth/google/callback"
         }
     }
 }
