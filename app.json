@@ -3,7 +3,7 @@
     "description": "Sample web application makes users register and authenticate",
     "keywords": ["nodejs", "express", "authentication"],
     "repository": "https://github.com/aydinmuminkorcan/user-authenticator",
-    "logo": "https://github.com/aydinmuminkorcan/user-authenticator/blob/master/public/img/lock.png",
+    "logo": "https://user-images.githubusercontent.com/25896282/103209032-17f3ec00-4913-11eb-9fcf-4597906bf84e.png",
     "env": {
         "NODE_ENV": {
             "description": "Node environment",
