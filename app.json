@@ -1,0 +1,33 @@
+{
+    "name": "user-authenticator",
+    "description": "Sample web application makes users register and authenticate",
+    "keywords": ["nodejs", "express", "authentication"],
+    "repository": "https://github.com/aydinmuminkorcan/user-authenticator",
+    "logo": "./public/img/lock.png",
+    "env": {
+        "NODE_ENV": {
+            "description": "Node environment",
+            "value": "production"
+        },
+        "PORT": {
+            "description": "Port",
+            "value": "5000"
+        },
+        "MONGODB_URI": {
+            "description": "The db url",
+            "value": "<your MONGODB_URI>"
+        },
+        "GOOGLE_CLIENT_ID": {
+            "description": "Google client ID",
+            "value": "<your GOOGLE_CLIENT_ID>"
+        },
+        "GOOGLE_CLIENT_SECRET": {
+            "description": "Google client secret",
+            "value": "<your GOOGLE_CLIENT_SECRET>"
+        },
+        "GOOGLE_REDIRECT_URI": {
+            "description": "redirect uri",
+            "value": "<your GOOGLE_REDIRECT_URI>"
+        }
+    }
+}
