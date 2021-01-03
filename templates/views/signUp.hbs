@@ -37,6 +37,7 @@
                         <h5 class="card-title text-center">Sign Up</h5>
 
                         <form class="form-signin" action="/users/signUp" method="POST" name="signUp">
+                            <input type="hidden" name="_csrf" value="{{csurfToken}}">
                             <div class="form-label-group">
                                 <input type="email" id="inputEmail" class="form-control" name="userName"
                                     placeholder="Email address" value="{{formData.userName}}" required autofocus>

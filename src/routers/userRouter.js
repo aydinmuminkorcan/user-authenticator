@@ -1,6 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const rateLimit = require('express-rate-limit');
+const csurf = require('csurf');
+
+const csurfProtection = csurf({ cookie: true });
 
 const User = require('../models/user');
 const google = require('../helpers/googleAuth');
@@ -12,28 +15,21 @@ const limiter = rateLimit({
     max: 20, // limit each IP to 20 requests per windowMs
 });
 
-// TODO: Restrict this endpoint for only admin users!!
+router.get('/logIn', csurfProtection, (req, res) => {
+    const token = req.csrfToken();
 
-router.get('/', (req, res) => {
-    User.find({})
-        .then((users) => {
-            res.send(users);
-        })
-        .catch((e) => {
-            res.status(400).send(e);
-        });
-});
+    console.log('Given token : ', token);
 
-router.get('/logIn', (req, res) => {
     res.render('logIn', {
         url: google.url,
         formData: {},
         error: {},
+        csurfToken: token,
         title: 'Sign In',
     });
 });
 
-router.post('/logIn', limiter, (req, res) => {
+router.post('/logIn', csurfProtection, limiter, (req, res) => {
     const { body } = req;
 
     let user = null;
@@ -74,7 +70,7 @@ router.post('/logIn', limiter, (req, res) => {
         });
 });
 
-// After the users enter their google credentials, they are redirected to this path by google
+// After the users enter their google credentials, they are redirected to this path by google with an authorization code
 router.get('/auth/google/callback', (req, res) => {
     const { code } = req.query;
 
@@ -117,16 +113,17 @@ router.get('/logOut', (req, res) => {
     res.redirect('/');
 });
 
-router.get('/signUp', (req, res) => {
+router.get('/signUp', csurfProtection, (req, res) => {
     res.render('signUp', {
         url: google.url,
         formData: {},
         error: {},
+        csurfToken: req.csrfToken(),
         title: 'Sign up',
     });
 });
 
-router.post('/signUp', (req, res) => {
+router.post('/signUp', csurfProtection, (req, res) => {
     const { body } = req;
 
     User.findOne({ userName: body.userName })

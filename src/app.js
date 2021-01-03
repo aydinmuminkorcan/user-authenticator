@@ -3,6 +3,7 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 
 const port = process.env.PORT;
@@ -60,6 +61,8 @@ app.use(
         extended: true,
     }),
 );
+
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
     if (req.session.user) {
