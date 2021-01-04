@@ -5,7 +5,7 @@ orbs:
 workflows:
   test:
     jobs:
-      - node/test
+      - node/test:
           run-command: style-check
-      - node/test
+      - node/test:
           run-command: test
