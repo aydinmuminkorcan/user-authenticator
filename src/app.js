@@ -35,8 +35,8 @@ const sess = {
     },
 };
 
+// Add some extra security http headers and cookie options for the production environment
 if (process.env.NODE_ENV === 'production') {
-    // Add some extra security http headers and cookie options for the production environment
     app.use(
         helmet.contentSecurityPolicy({
             directives: {
@@ -62,6 +62,7 @@ app.use(
     }),
 );
 
+// cookieParser middleware is used to get cookie header from request and populate it in req.cookies for later usage in the route handlers
 app.use(cookieParser());
 
 app.get('/', (req, res) => {

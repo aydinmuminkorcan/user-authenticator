@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const rateLimit = require('express-rate-limit');
 const csurf = require('csurf');
 
+// This middleware protects the form submission endpoints from CSRF attack
 const csurfProtection = csurf({ cookie: true });
 
 const User = require('../models/user');
@@ -10,6 +11,7 @@ const google = require('../helpers/googleAuth');
 
 const router = new express.Router();
 
+// This middleware prevents brute force attacks to guess password for the login endpoint
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 20, // limit each IP to 20 requests per windowMs
@@ -17,8 +19,6 @@ const limiter = rateLimit({
 
 router.get('/logIn', csurfProtection, (req, res) => {
     const token = req.csrfToken();
-
-    console.log('Given token : ', token);
 
     res.render('logIn', {
         url: google.url,
@@ -70,7 +70,7 @@ router.post('/logIn', csurfProtection, limiter, (req, res) => {
         });
 });
 
-// After the users enter their google credentials, they are redirected to this path by google with an authorization code
+// After users enter their google credentials, they are redirected to this path by google with an authorization code
 router.get('/auth/google/callback', (req, res) => {
     const { code } = req.query;
 
