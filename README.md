@@ -7,7 +7,7 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
 
 ## Prerequisites
 
-* _NodeJS and related command line tools_: You need to install the latest version  of NodeJS runtime before you do anything. It can be installed in various ways, but we recommend to install it via nvm (Node Version Manager) a bash script used to manage multiple released Node.js versions. To install nvm, apply the instructions on https://github.com/nvm-sh/nvm#install--update-script. Then, type to check
+* ___NodeJS and related command line tools___: You need to install the latest version  of NodeJS runtime before you do anything. It can be installed in various ways, but we recommend to install it via nvm (Node Version Manager) a bash script used to manage multiple released Node.js versions. To install nvm, apply the instructions on https://github.com/nvm-sh/nvm#install--update-script. Then, type to check
   
     ```
     nvm --version
@@ -31,14 +31,14 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
     ```
     nvm use <version-of-nodejs>
     ```    
-* _Mongodb_: Install mongodb by the help of [this guide](https://docs.mongodb.com/manual/installation/) or simply 
+* ___Mongodb___: Install mongodb by the help of [this guide](https://docs.mongodb.com/manual/installation/) or simply 
   download and add its bin directory to your system's $PATH environment variable. Run the following to start mongodb server:
   ```
   mongod --dbpath <directory-path-to-store-actual-data>
   ```
   Note: For the production environment, you need to create [a mongodb cloud account](https://www.mongodb.com/cloud/atlas) if you dont have and initialize a database there.
 
-* _Google Credentials_: Get your google __client ID__ and __client secret__ from [google console page](https://console.developers.google.com/) by the following steps, later you will use them while sign in with google
+* ___Google Credentials___: Get your google __client ID__ and __client secret__ from [google console page](https://console.developers.google.com/) by the following steps, later you will use them while sign in with google
   
   1. From the project drop-down, select an existing project, or create a new one by selecting __Create a new project__
   
@@ -64,7 +64,7 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
 
       ![alt text](./public/img/5.png)
   
- * _Heroku_: Create a [heroku](https://www.heroku.com/) account if you do not have.
+ * ___Heroku___: Create a [heroku](https://www.heroku.com/) account if you do not have.
    
 ## Installing
 Clone the repository : 
@@ -83,6 +83,20 @@ After cloning the repository, install dependencies by :
 npm install
 ```
 
+Then open an empty file named .env and set environment variables like that
+
+```
+NODE_ENV = development
+PORT = 3000
+MONGODB_URI = <your mongodb uri>
+GOOGLE_CLIENT_ID = <your GOOGLE_CLIENT_ID>
+GOOGLE_CLIENT_SECRET = <your GOOGLE_CLIENT_ID>
+GOOGLE_REDIRECT_URI = 'http://localhost:3000/users/auth/google/callback'
+GITHUB_CLIENT_ID = <your GITHUB_CLIENT_ID>
+GITHUB_CLIENT_SECRET = <your GITHUB_CLIENT_ID>
+GITHUB_REDIRECT_URI = 'http://localhost:3000/users/auth/github/callback'
+```
+
 Finally, for the development environment run:
 
 ```
@@ -96,13 +110,6 @@ Run the tests by:
 
 ```
 npm run test
-```
-
-### Break down into end to end tests
-Explain what these tests test and why
-
-```
-Give an example
 ```
 
 ### Coding style tests
