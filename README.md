@@ -30,12 +30,14 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
     Finally, you can pick one of the installed versions by
     ```
     nvm use <version-of-nodejs>
-    ```
+    ```    
 * _Mongodb_: Install mongodb by the help of [this guide](https://docs.mongodb.com/manual/installation/) or simply 
   download and add its bin directory to your system's $PATH environment variable. Run the following to start mongodb server:
   ```
   mongod --dbpath <directory-path-to-store-actual-data>
   ```
+  Note: For the production environment, you need to create [a mongodb cloud account](https://www.mongodb.com/cloud/atlas) if you dont have and initialize a database there.
+
 * _Google Credentials_: Get your google __client ID__ and __client secret__ from [google console page](https://console.developers.google.com/) by the following steps, later you will use them while sign in with google
   
   1. From the project drop-down, select an existing project, or create a new one by selecting __Create a new project__
@@ -61,6 +63,8 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
       _Note_: When you run this app in the development environment, you will come across the following screen because of not using https, but this will not be the case in the production environment as Heroku itself publishes apps via https. Thus, for now, simply click on show advance and then click on Go to 'your app name'(unsafe) and allow it.
 
       ![alt text](./public/img/5.png)
+  
+ * _Heroku_: Create a [heroku](https://www.heroku.com/) account if you do not have.
    
 ## Installing
 Clone the repository : 
@@ -136,8 +140,3 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
-## Acknowledgements
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
