@@ -29,6 +29,18 @@
         "GOOGLE_REDIRECT_URI": {
             "description": "redirect uri",
             "value": "https://<app-name>.herokuapp.com/users/auth/google/callback"
+        },
+        "GITHUB_CLIENT_ID": {
+            "description": "Github client ID",
+            "value": "<your GITHUB_CLIENT_ID>"
+        },
+        "GITHUB_CLIENT_SECRET": {
+            "description": "Github client secret",
+            "value": "<your GITHUB_CLIENT_SECRET>"
+        },
+        "GITHUB_REDIRECT_URI": {
+            "description": "redirect uri",
+            "value": "https://<app-name>.herokuapp.com/users/auth/github/callback"
         }
     }
 }
