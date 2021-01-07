@@ -1,6 +1,6 @@
 {
     "name": "user-authenticator",
-    "description": "Sample web application makes users register and authenticate",
+    "description": "Sample web application allows users register and authenticate",
     "keywords": ["nodejs", "express", "authentication"],
     "repository": "https://github.com/aydinmuminkorcan/user-authenticator",
     "image": "heroku/nodejs",
