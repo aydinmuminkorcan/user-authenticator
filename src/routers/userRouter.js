@@ -165,7 +165,7 @@ router.get('/me', (req, res) => {
     const { user } = req.session;
 
     return res.render('dashboard', {
-        userName: user.userName,
+        userName: user.userName.split('@')[0],
         title: 'Dashboard',
     });
 });
