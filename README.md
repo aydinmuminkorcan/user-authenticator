@@ -49,7 +49,7 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
       ![alt text](./public/img/2.png)
 
 
-  3. In the Credentials tab, select the Create credentials drop-down list, and choose __OAuth client ID__.
+  3. In Credentials tab, select the Create credentials drop-down list, and choose __OAuth client ID__.
    
      ![alt text](./public/img/3.png)
 
@@ -63,7 +63,21 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
       _Note_: When you run this app in the development environment, you will come across the following screen because of not using https, but this will not be the case in the production environment as Heroku itself publishes apps via https. Thus, for now, simply click on show advance and then click on Go to 'your app name'(unsafe) and allow it.
 
       ![alt text](./public/img/5.png)
-  
+ 
+ * ___Github Credentials___: Get your github __client ID__ and __client secret__  by creating a new oauth app on [developer settings page](https://github.com/settings/developers)
+    
+    1. Click on New Oauth App button
+    
+        ![alt text](./public/img/6.png)
+    
+    2. Fill the form and register application.
+   
+        ![alt text](./public/img/7.png)
+
+        Then, save client id and secret to be used later for environment variables
+
+        _Note_: You will need to update authorization callback url for different environments since the url will be changed
+
  * ___Heroku___: Create a [heroku](https://www.heroku.com/) account if you do not have.
    
 ## Installing
