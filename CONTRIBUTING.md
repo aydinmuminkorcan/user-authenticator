@@ -28,7 +28,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 ---
 ## Report bugs using Github's [issues](https://github.com/aydinmuminkorcan/user-authenticator/issues)
-We use GitHub issues to track public bugs. Report a bug by opening a new issue.
+We use GitHub issues to track public bugs. Report a bug by opening a new issue. Before creating a pull request, please open an issue first, so we will be able to discuss your requests.
 
 ---
 ## Write bug reports with detail
