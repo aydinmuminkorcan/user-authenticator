@@ -29,7 +29,7 @@ const url = connection.generateAuthUrl({
 // of Oauth 2.0 protocol is authorization, not authentication. For authentication, OpenID protocol is implemented on the top
 // of Oauth 2.0. Since google has already implemented this protocol, the provide id_token for this context.
 
-function getAuthorizationToken(authorizationCode) {
+function getAuthorizationToken(code) {
     return axios({
         method: 'post',
         url: 'https://oauth2.googleapis.com/token',
@@ -38,7 +38,7 @@ function getAuthorizationToken(authorizationCode) {
             client_secret: process.env.GOOGLE_CLIENT_SECRET,
             redirect_uri: process.env.GOOGLE_REDIRECT_URI,
             grant_type: 'authorization_code',
-            code: authorizationCode,
+            code,
         },
     }).then((res) => res.data);
 }

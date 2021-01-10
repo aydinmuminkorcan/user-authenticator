@@ -8,6 +8,7 @@ const csurfProtection = csurf({ cookie: true });
 
 const User = require('../models/user');
 const google = require('../helpers/googleAuth');
+const github = require('../helpers/githubAuth');
 
 const router = new express.Router();
 
@@ -21,7 +22,8 @@ router.get('/logIn', csurfProtection, (req, res) => {
     const token = req.csrfToken();
 
     res.render('logIn', {
-        url: google.url,
+        googleUrl: google.url,
+        githubUrl: github.url,
         formData: {},
         error: {},
         csurfToken: token,
@@ -52,7 +54,8 @@ router.post('/logIn', csurfProtection, limiter, (req, res) => {
             user = foundUser;
             if (!bcrypt.compareSync(body.password, user.password)) {
                 return res.status(401).render('logIn', {
-                    url: google.url,
+                    googleUrl: google.url,
+                    githubUrl: github.url,
                     formData: req.body,
                     error: {
                         message: 'Invalid password',
@@ -108,6 +111,42 @@ router.get('/auth/google/callback', (req, res) => {
     }
 });
 
+// After users enter their github credentials, they are redirected to this path by github with an authorization code
+router.get('/auth/github/callback', (req, res) => {
+    const { code } = req.query;
+
+    if (code) {
+        github
+            .getAuthorizationToken(code)
+            .then((token) => github.getUserEmail(token))
+            .then((email) => {
+                User.findOne({ userName: email }).then((foundUser) => {
+                    if (!foundUser) {
+                        const user = {
+                            userName: email,
+                            password: 'thirdparty',
+                            age: 99,
+                            thirdParty: true,
+                        };
+
+                        new User(user).save((err) => {
+                            if (err) return console.error(err);
+                            req.session.user = user;
+                            return res.redirect('/users/me');
+                        });
+                    } else {
+                        req.session.user = foundUser;
+                        res.redirect('/users/me');
+                    }
+                });
+            })
+            .catch((e) => {
+                console.error(e);
+                res.status(500).send(e);
+            });
+    }
+});
+
 router.get('/logOut', (req, res) => {
     req.session.destroy();
     res.redirect('/');
@@ -115,7 +154,8 @@ router.get('/logOut', (req, res) => {
 
 router.get('/signUp', csurfProtection, (req, res) => {
     res.render('signUp', {
-        url: google.url,
+        googleUrl: google.url,
+        githubUrl: github.url,
         formData: {},
         error: {},
         csurfToken: req.csrfToken(),
@@ -130,6 +170,8 @@ router.post('/signUp', csurfProtection, (req, res) => {
         .then((user) => {
             if (user)
                 return res.status(400).render('signUp', {
+                    googleUrl: google.url,
+                    githubUrl: github.url,
                     formData: req.body,
                     error: {
                         message: 'User already exists, please log in!',
