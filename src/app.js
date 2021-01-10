@@ -42,7 +42,6 @@ if (process.env.NODE_ENV === 'production') {
             directives: {
                 ...helmet.contentSecurityPolicy.getDefaultDirectives(),
                 'script-src': ["'self'", 'https://code.jquery.com', 'https://cdn.jsdelivr.net'],
-                'frame-src': ["'self'", 'https://www.google.com'],
                 'img-src': ["'self'"],
             },
         }),
