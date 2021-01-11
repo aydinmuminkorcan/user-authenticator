@@ -36,7 +36,24 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
   ```
   mongod --dbpath <directory-path-to-store-actual-data>
   ```
-  Note: For the production environment, you need to create [a mongodb cloud account](https://www.mongodb.com/cloud/atlas) if you dont have and initialize a database there.
+  Note: For the production environment, you need to create [a mongodb cloud account](https://www.mongodb.com/cloud/atlas) if you do not have and initialize a database there by following these steps:
+
+  - Click the green **Get started free** button
+  - Fill in your information then hit **Get started free**
+  - You will be redirected to Create New Cluster page.
+  - Select a **Cloud Provider and Region** (such as AWS and a free tier region)
+  - Select cluster Tier to Free forever **Shared** Cluster
+  - Give Cluster a name (default: Cluster0)
+  - Click on green **Create Cluster button**
+  - Now, to access your database you need to create a DB user. To create a new MongoDB user, from the **Clusters view**, select the **Security tab**
+  - Under the **MongoDB Users** tab, click on **+Add New User**
+  - Fill in a username and password and give it either **Atlas Admin** User Privilege
+  - Next, you will need to create an IP address whitelist and obtain the connection URI. In the Clusters view, under the cluster details (i.e. SANDBOX - Cluster0), click on the **CONNECT** button.
+  - Under section **(1) Check the IP Whitelist**, click on **ALLOW ACCESS FROM ANYWHERE**. The form will add a field with `0.0.0.0/0`.  Click **SAVE** to save the `0.0.0.0/0` whitelist.
+  - Under section **(2) Choose a connection method**, click on **Connect Your Application**
+  - In the new screen, select **Node.js** as Driver and version **3.6 or later**.
+  - Save the URI connection string to be used later for MONGODB_URI environment variable of production. 
+
 
 * ___Google Credentials___: Get your google __client ID__ and __client secret__ from [google console page](https://console.developers.google.com/) by the following steps, later you will use them while sign in with google
   
@@ -139,7 +156,26 @@ Deploy the app on heroku by using the following button:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/aydinmuminkorcan/user-authenticator)
 
-
+Alternatively, you can deploy manually from your terminal by installing [heroku toolbelt](https://toolbelt.heroku.com/)
+    
+  1. Enter your heroku credentials by 
+   
+        ```
+        heroku login
+        ```
+  2. Create a heroku app by running the following command from the app directory:
+   
+        ```
+        heroku create
+        ```
+  3. Then, set the different environment variables by:
+        ```
+        heroku config:set <key>=<value> 
+        ```
+  4. Finally, 
+        ```
+        git push heroku master
+        ```
 ## Built With
 * [Express](https://expressjs.com/) - The web framework used
 * [npm](https://docs.npmjs.com/) - Dependency Management
