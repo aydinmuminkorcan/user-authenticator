@@ -159,5 +159,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
+[![Stargazers repo roster for @aydinmuminkorcan/user-authenticator](https://reporoster.com/stars/aydinmuminkorcan/user-authenticator)](https://github.com/aydinmuminkorcan/user-authenticator/stargazers)
+
+
+[![Forkers repo roster for @aydinmuminkorcan/user-authenticator](https://reporoster.com/forks/aydinmuminkorcan/user-authenticator)](https://github.com/aydinmuminkorcan/user-authenticator/network/members)
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
