@@ -53,21 +53,31 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
   ```
   Note: For the production environment, you need to create [a mongodb cloud account](https://www.mongodb.com/cloud/atlas) if you do not have and initialize a database there by following these steps:
 
-  - Click the green __Get started free__ button
-  - Fill in your information then hit __Get started free__
-  - You will be redirected to Create New Cluster page.
-  - Select a __Cloud Provider and Region__ (such as AWS and a free tier region)
-  - Select cluster Tier to Free forever __Shared__ Cluster
-  - Give Cluster a name (default: Cluster0)
-  - Click on green __Create Cluster button__
-  - Now, to access your database you need to create a DB user. To create a new MongoDB user, from the __Clusters view__, select the __Security tab__
-  - Under the __MongoDB Users__ tab, click on __+Add New User__
-  - Fill in a username and password and give it either __Atlas Admin__ User Privilege
-  - Next, you will need to create an IP address whitelist and obtain the connection URI. In the Clusters view, under the cluster details (i.e. SANDBOX - Cluster0), click on the **CONNECT** button.
-  - Under section **(1) Check the IP Whitelist**, click on **ALLOW ACCESS FROM ANYWHERE**. The form will add a field with `0.0.0.0/0`.  Click **SAVE** to save the `0.0.0.0/0` whitelist.
-  - Under section **(2) Choose a connection method**, click on **Connect Your Application**
-  - In the new screen, select **Node.js** as Driver and version **3.6 or later**.
-  - Save the URI connection string to be used later for MONGODB_URI environment variable of production. 
+  - Click the green __Get started free__ and create an account or sign up with google
+  - Choose Free  __Shared Cluster__ and create a cluster
+  
+    ![alt text](./.github/images/8.png?raw=true)
+
+  - Select a __Cloud Provider and Region__ (such as AWS and a free tier region) and click __Create__
+
+    ![alt text](./.github/images/9.png?raw=true)
+
+  - Next, In the Clusters view, click on the __CONNECT__ button.
+
+    ![alt text](./.github/images/10.png?raw=true)
+
+  - In 1. Add a connection IP address section, select __Allow Access From Anywhere__ then, click __Add IP Address__
+
+  - In 2. Create a Database User, fill username and password fields and click __Create Database User__
+  
+    ![alt text](./.github/images/11.png?raw=true)
+
+  - Then, click on __(3) Choose a connection method__ button, and select __Connect Your Application__
+  - In the new screen, select __Node.js__ and __3.6 and later__  as Driver.
+
+    ![alt text](./.github/images/12.png?raw=true)
+
+  - Save the URI connection string to be used later for _MONGODB_URI_ environment variable of production. 
 
 <br>
 
@@ -125,7 +135,7 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
    
         ![alt text](./.github/images/7.png?raw=true)
 
-        Then, save client id and secret to be used later for environment variables
+        Then, save _client id_ and _client secret_ to be used later for environment variables
 
         _Note_: You will need to update authorization callback url for different environments since the url will be changed
 
@@ -245,11 +255,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 See also the list of [contributors](https://github.com/aydinmuminkorcan/user-authenticator/contributors) who participated in this project.
 
-### Stargazers
+###### Stargazers
 
 [![Stargazers repo roster for @aydinmuminkorcan/user-authenticator](https://reporoster.com/stars/aydinmuminkorcan/user-authenticator)](https://github.com/aydinmuminkorcan/user-authenticator/stargazers)
 
-### Forkers
+###### Forkers
 
 [![Forkers repo roster for @aydinmuminkorcan/user-authenticator](https://reporoster.com/forks/aydinmuminkorcan/user-authenticator)](https://github.com/aydinmuminkorcan/user-authenticator/network/members)
 
