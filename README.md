@@ -1,4 +1,4 @@
-<p align="center"><img src="./public/img/lock.png" height="60"/></p>
+<p align="center"><img src="./public/img/lock.png?raw=true" height="60"/></p>
 <h1 align="center">User Authenticator</h1>
 <p align="center">Make yourself trusted!</p>
 
@@ -59,37 +59,37 @@ This simple project illustrates the scenarios of Sign In / Sign Up process for a
   
   1. From the project drop-down, select an existing project, or create a new one by selecting __Create a new project__
   
-      ![alt text](./public/img/1.png)
+      ![alt text](./public/img/1.png?raw=true)
 
   2. In the sidebar under "APIs & Services", select __Credentials__
    
-      ![alt text](./public/img/2.png)
+      ![alt text](./public/img/2.png?raw=true)
 
 
   3. In Credentials tab, select the Create credentials drop-down list, and choose __OAuth client ID__.
    
-     ![alt text](./public/img/3.png)
+     ![alt text](./public/img/3.png?raw=true)
 
   4. Under Application type, select __Web application__, give a name whatever you want, and add your domain to __Authorized Javascript Origin__. (For the development environment, localhost is ok). In __Authorized redirect URI__ use http://localhost:3000/users/auth/google/callback
   . Then click __Create__ button. 
 
-     ![alt text](./public/img/4.png)
+     ![alt text](./public/img/4.png?raw=true)
 
   5. Copy or download the credentials JSON file by clicking on the download button.
    
       _Note_: When you run this app in the development environment, you will come across the following screen because of not using https, but this will not be the case in the production environment as Heroku itself publishes apps via https. Thus, for now, simply click on show advance and then click on Go to 'your app name'(unsafe) and allow it.
 
-      ![alt text](./public/img/5.png)
+      ![alt text](./public/img/5.png?raw=true)
  
  * ___Github Credentials___: Get your github __client ID__ and __client secret__  by creating a new oauth app on [developer settings page](https://github.com/settings/developers)
     
     1. Click on New Oauth App button
     
-        ![alt text](./public/img/6.png)
+        ![alt text](./public/img/6.png?raw=true)
     
     2. Fill the form and register application.
    
-        ![alt text](./public/img/7.png)
+        ![alt text](./public/img/7.png?raw=true)
 
         Then, save client id and secret to be used later for environment variables
 
