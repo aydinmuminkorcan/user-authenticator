@@ -33,6 +33,7 @@ router.get('/logIn', csurfProtection, (req, res) => {
 
 router.post('/logIn', csurfProtection, limiter, (req, res) => {
     const { body } = req;
+    const token = req.csrfToken();
 
     let user = null;
 
@@ -46,8 +47,9 @@ router.post('/logIn', csurfProtection, limiter, (req, res) => {
                     url: google.url,
                     formData: req.body,
                     error: {
-                        message: 'User does not exist, please sign up!',
+                        userName: 'User does not exist, please sign up!',
                     },
+                    csurfToken: token,
                     title: 'Sign In',
                 });
 
@@ -58,8 +60,9 @@ router.post('/logIn', csurfProtection, limiter, (req, res) => {
                     githubUrl: github.url,
                     formData: req.body,
                     error: {
-                        message: 'Invalid password',
+                        password: 'Invalid password',
                     },
+                    csurfToken: token,
                     title: 'Sign In',
                 });
             }
@@ -148,8 +151,11 @@ router.get('/auth/github/callback', (req, res) => {
 });
 
 router.get('/logOut', (req, res) => {
+    if (!req.session) {
+        return res.status(401).send({ message: 'You are not authorized to use this route!' });
+    }
     req.session.destroy();
-    res.redirect('/');
+    return res.redirect('/');
 });
 
 router.get('/signUp', csurfProtection, (req, res) => {
@@ -165,6 +171,7 @@ router.get('/signUp', csurfProtection, (req, res) => {
 
 router.post('/signUp', csurfProtection, (req, res) => {
     const { body } = req;
+    const token = req.csrfToken();
 
     User.findOne({ userName: body.userName })
         .then((user) => {
@@ -172,6 +179,7 @@ router.post('/signUp', csurfProtection, (req, res) => {
                 return res.status(400).render('signUp', {
                     googleUrl: google.url,
                     githubUrl: github.url,
+                    csurfToken: token,
                     formData: req.body,
                     error: {
                         message: 'User already exists, please log in!',
@@ -179,21 +187,10 @@ router.post('/signUp', csurfProtection, (req, res) => {
                     title: 'Sign Up',
                 });
 
-            return new User(req.body)
-                .save()
-                .then((savedUser) => {
-                    req.session.user = savedUser;
-                    return res.redirect('/users/me');
-                })
-                .catch((e) => {
-                    res.status(400).render('signUp', {
-                        formData: req.body,
-                        error: {
-                            message: e.message,
-                        },
-                        title: 'Sign Up',
-                    });
-                });
+            return new User(req.body).save().then((savedUser) => {
+                req.session.user = savedUser;
+                return res.redirect('/users/me');
+            });
         })
         .catch((e) => {
             console.error(e);

@@ -41,16 +41,22 @@
                         <form class="form-signin" action="/users/logIn" method="POST" name="signIn">
                             <input type="hidden" name="_csrf" value="{{csurfToken}}">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" name="userName" class="form-control"
+                                <input type="email" id="inputEmail" name="userName"
+                                    class="form-control {{#if error.userName}}is-invalid{{/if}}"
                                     placeholder="Email address" value="{{formData.userName}}" required autofocus>
                                 <label for="inputEmail">Email address</label>
+                                <div class="text-danger ml-3" id="userError">{{error.userName}}</div>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" name="password"
+                                <input type="password" id="inputPassword"
+                                    class="form-control {{#if error.password}}is-invalid{{/if}}" name="password"
                                     placeholder="Password" minlength="7" required>
                                 <label for="inputPassword">Password</label>
+                                <div class="text-danger ml-3" id="passwordError">{{error.password}}</div>
                             </div>
+
+
                             <!--
                             <div class="custom-control custom-checkbox mb-3">
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
@@ -64,9 +70,6 @@
                             <a href="{{githubUrl}}" class="btn btn-lg btn-social btn-github btn-block text-uppercase"
                                 type="submit"><i class="fab fa-github mr-2"></i>Continue with Github</a>
                         </form>
-
-                        <p class="mx-auto" id="error">{{error.message}}</p>
-
                     </div>
                 </div>
             </div>
@@ -80,6 +83,7 @@
         crossorigin="anonymous"></script>
     <script src="/js/menu.js"></script>
     <script src="/js/active.js"></script>
+    <script src="/js/logIn.js"></script>
 </body>
 
 </html>

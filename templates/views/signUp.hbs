@@ -39,9 +39,11 @@
                         <form class="form-signin" action="/users/signUp" method="POST" name="signUp">
                             <input type="hidden" name="_csrf" value="{{csurfToken}}">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" name="userName"
+                                <input type="email" id="inputEmail"
+                                    class="form-control {{#if error.message}}is-invalid{{/if}}" name="userName"
                                     placeholder="Email address" value="{{formData.userName}}" required autofocus>
                                 <label for="inputEmail">Email address</label>
+                                <div class="text-danger ml-3" id="error">{{error.message}}</div>
                             </div>
 
                             <div class="form-label-group">
@@ -72,9 +74,6 @@
                             <a href="{{githubUrl}}" class="btn btn-lg btn-social btn-github btn-block text-uppercase"
                                 type="submit"><i class="fab fa-github mr-2"></i> Continue with Github </a>
                         </form>
-
-                        <p id="error">{{error.message}}</p>
-
                     </div>
                 </div>
             </div>
