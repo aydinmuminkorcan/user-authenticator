@@ -34,6 +34,14 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    googleId: {
+        type: String,
+        unique: true,
+    },
+    githubId: {
+        type: String,
+        unique: true,
+    },
 });
 
 userSchema.pre('save', function (next) {

@@ -87,23 +87,34 @@ router.get('/auth/google/callback', (req, res) => {
             .then((loginTicket) => {
                 const payload = loginTicket.getPayload();
 
-                User.findOne({ userName: payload.email }).then((foundUser) => {
+                User.findOne({ userName: payload.email }).then((user) => {
+                    const foundUser = user;
+
                     if (!foundUser) {
-                        const user = {
+                        const newUser = {
                             userName: payload.email,
                             password: 'thirdparty',
-                            age: 99,
                             thirdParty: true,
+                            googleId: payload.sub,
                         };
 
-                        new User(user).save((err) => {
+                        new User(newUser).save((err) => {
                             if (err) return console.error(err);
-                            req.session.user = user;
+                            req.session.user = newUser;
                             return res.redirect('/users/me');
                         });
-                    } else {
+                    } else if (!foundUser.googleId) {
+                        foundUser.googleId = payload.sub;
+                        foundUser.save((err) => {
+                            if (err) throw err;
+                            req.session.user = foundUser;
+                            res.redirect('/users/me');
+                        });
+                    } else if (foundUser.googleId === payload.sub) {
                         req.session.user = foundUser;
                         res.redirect('/users/me');
+                    } else {
+                        res.status(401).send({ message: 'Invalid google account id!' });
                     }
                 });
             })
@@ -121,25 +132,37 @@ router.get('/auth/github/callback', (req, res) => {
     if (code) {
         github
             .getAuthorizationToken(code)
-            .then((token) => github.getUserEmail(token))
-            .then((email) => {
-                User.findOne({ userName: email }).then((foundUser) => {
+            .then((token) => github.getUserData(token))
+            .then((data) => {
+                const id = data.id.toString();
+
+                User.findOne({ userName: data.email }).then((user) => {
+                    const foundUser = user;
                     if (!foundUser) {
-                        const user = {
-                            userName: email,
+                        const newUser = {
+                            userName: data.email,
                             password: 'thirdparty',
-                            age: 99,
                             thirdParty: true,
+                            githubId: id,
                         };
 
-                        new User(user).save((err) => {
+                        new User(newUser).save((err) => {
                             if (err) return console.error(err);
-                            req.session.user = user;
+                            req.session.user = newUser;
                             return res.redirect('/users/me');
                         });
-                    } else {
+                    } else if (!foundUser.githubId) {
+                        foundUser.githubId = id;
+                        foundUser.save((err) => {
+                            if (err) throw err;
+                            req.session.user = foundUser;
+                            res.redirect('/users/me');
+                        });
+                    } else if (foundUser.githubId === id) {
                         req.session.user = foundUser;
                         res.redirect('/users/me');
+                    } else {
+                        res.status(401).send({ message: 'Invalid github account id!' });
                     }
                 });
             })
@@ -151,7 +174,7 @@ router.get('/auth/github/callback', (req, res) => {
 });
 
 router.get('/logOut', (req, res) => {
-    if (!req.session) {
+    if (!req.session.user) {
         return res.status(401).send({ message: 'You are not authorized to use this route!' });
     }
     req.session.destroy();

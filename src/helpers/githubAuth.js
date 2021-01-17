@@ -31,18 +31,18 @@ function getAuthorizationToken(code) {
     });
 }
 
-function getUserEmail(token) {
+function getUserData(token) {
     return axios({
         method: 'get',
         url: 'https://api.github.com/user',
         headers: {
             Authorization: `token ${token}`,
         },
-    }).then(({ data }) => data.email);
+    }).then(({ data }) => data);
 }
 
 module.exports = {
     getAuthorizationToken,
-    getUserEmail,
+    getUserData,
     url,
 };
