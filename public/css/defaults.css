@@ -156,10 +156,6 @@ input:required {
 
 /* Buttons CSS */
 
-.btn:hover {
-    color: white;
-}
-
 .btn:focus {
     box-shadow: none;
 }
