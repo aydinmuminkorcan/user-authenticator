@@ -2,8 +2,11 @@
 <h1 align="center">User Authenticator</h1>
 <p align="center">Make yourself trusted!</p>
 
+<p align="center"> <img alt="David" src="https://img.shields.io/david/aydinmuminkorcan/user-authenticator"> <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aydinmuminkorcan/user-authenticator"> <img alt="CircleCI" src="https://img.shields.io/circleci/build/github/aydinmuminkorcan/user-authenticator"> <img alt="GitHub" src="https://img.shields.io/github/license/aydinmuminkorcan/user-authenticator"></p>
+
+
 This simple project illustrates the scenarios of Sign In / Sign Up process for a web application with a fully responsive UI. It can be used as a subsystem or template for the projects which need user authentication.
-<br><br><br>
+<br><br>
 
 ## Prerequisites
 
