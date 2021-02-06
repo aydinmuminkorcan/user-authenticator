@@ -29,12 +29,12 @@
 <body>
     {{>header}}
 
-    <div class="container">
+    <div role="main" class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Sign Up</h5>
+                        <h1 class="card-title text-center">Sign Up</h1>
 
                         <form class="form-signin" action="/users/signUp" method="POST" name="signUp">
                             <input type="hidden" name="_csrf" value="{{csurfToken}}">
@@ -70,7 +70,7 @@
                                 Up</button>
                             <hr class="my-4">
                             <a href="{{googleUrl}}" class="btn btn-lg btn-google btn-block text-uppercase"
-                                type="submit"><img class="google-icon mr-2"
+                                type="submit"><img title="Site Logo" alt="Site Logo" class="google-icon mr-2"
                                     src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
                                 Continue with Google</a>
                             <a href="{{githubUrl}}" class="btn btn-lg btn-social btn-github btn-block text-uppercase"
