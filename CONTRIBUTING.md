@@ -75,6 +75,10 @@ We use Airbnb's javascript coding style. For more information: [Airbnb's Javascr
 * Run `npm run format` to format your code
 * Run `npm run lint` and fix the errors for consistent style.
 ---
+## Accessibility
+  Please resolve any accessibility issues before commit! This is our defacto standard. To check for accessibility issues:
+  * Run `npm run accessibility-check` 
+  
 ## Commit message standard
 The format:
 
