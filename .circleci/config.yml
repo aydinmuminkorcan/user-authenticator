@@ -6,6 +6,6 @@ workflows:
   test:
     jobs:
       - node/test:
+          run-command: accessibility-check
           run-command: style-check
-      - node/test:
           run-command: test

@@ -9,7 +9,8 @@
         "prod": "node ./src/app.js",
         "lint": "eslint --fix 'src/**/*.js'",
         "format": "prettier --write 'src/**/*.js'",
-        "style-check": "prettier --check 'src/**/*.js' && eslint 'src/**/*.js'"
+        "style-check": "prettier --check 'src/**/*.js' && eslint 'src/**/*.js'",
+        "accessibility-check": "pa11y-ci"
     },
     "author": "Mumin Korcan Aydin",
     "license": "MIT",

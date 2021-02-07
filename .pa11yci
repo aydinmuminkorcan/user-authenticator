@@ -1,0 +1,8 @@
+{
+    "urls": [
+        "http://localhost:3000/",
+        "http://localhost:3000/users/logIn",
+        "http://localhost:3000/users/signUp",
+        "http://localhost:3000/users/me"
+    ]
+}
