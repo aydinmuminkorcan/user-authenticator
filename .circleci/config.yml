@@ -2,20 +2,10 @@ version: 2.1
 orbs:
     node: circleci/node@4.0.1
 
-jobs:
-    ci-job:
-        executor: node/default
-        steps:
-            - checkout
-            - node/install
-            - run:
-                  name: Check for coding style
-                  command: npm run style-check
-            - run:
-                  name: Run tests
-                  command: npm run test
-
 workflows:
-    ci-workflow:
+    test:
         jobs:
-            - ci-job
+            - node/test:
+                  run-command: style-check
+            - node/test:
+                  run-command: test
