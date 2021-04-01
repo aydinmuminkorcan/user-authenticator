@@ -5,6 +5,7 @@
         "es2021": true
     },
     "extends": ["plugin:security/recommended", "airbnb-base", "prettier"],
+    "ignorePatterns": ["public/**/*.js"],
     "plugins": ["prettier", "security"],
     "parserOptions": {
         "ecmaVersion": 12
